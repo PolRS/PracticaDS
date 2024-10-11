@@ -1,6 +1,7 @@
 package baseNoStates;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Space extends Area {
   private final ArrayList<Door> doors = new ArrayList<>();
@@ -8,6 +9,8 @@ public class Space extends Area {
   public Space(String id) {
     super(id);
   }
+
+  public void addDoor(Door door) { doors.add(door); }
 
   @Override
   public ArrayList<Door> getDoorsGivingAccess() {
@@ -20,5 +23,11 @@ public class Space extends Area {
       return this;
     }
     return null;
+  }
+
+  @Override
+  public ArrayList<Space> getSpaces() {
+    ArrayList<Space> spaces = new ArrayList<>(Arrays.asList(this));
+    return spaces;
   }
 }
