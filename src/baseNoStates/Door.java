@@ -7,10 +7,13 @@ import org.json.JSONObject;
 public class Door {
   private final String id;
   private boolean closed; // physically
+  private DoorState doorState;
+
 
   public Door(String id) {
     this.id = id;
     closed = true;
+    doorState = new Locked(this);
   }
 
   public void processRequest(RequestReader request) {
@@ -28,18 +31,10 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
-        if (closed) {
-          closed = false;
-        } else {
-          System.out.println("Can't open door " + id + " because it's already open");
-        }
+        doorState.open(this);
         break;
       case Actions.CLOSE:
-        if (closed) {
-          System.out.println("Can't close door " + id + " because it's already closed");
-        } else {
-          closed = true;
-        }
+        doorState.close(this);
         break;
       case Actions.LOCK:
         // TODO
@@ -61,12 +56,16 @@ public class Door {
     return closed;
   }
 
+  public void setClosed(boolean closed) {
+    this.closed = closed;
+  }
+
   public String getId() {
     return id;
   }
 
   public String getStateName() {
-    return "unlocked";
+    return doorState.getName();
   }
 
   @Override

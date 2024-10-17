@@ -23,7 +23,12 @@ public class Partition extends Area {
 
   @Override
   public ArrayList<Door> getDoorsGivingAccess() {
-    return null;
+    ArrayList<Door> doors = new ArrayList<>();
+    for (Area area : areas) {
+      doors.addAll(area.getDoorsGivingAccess());
+    }
+
+    return doors;
   }
 
   @Override
