@@ -11,23 +11,37 @@ import java.util.Arrays;
 public class Partition extends Area {
   ArrayList<Area> areas = new ArrayList<>();
 
-  public Partition(String id, ArrayList<Area> areas) {
-    super(id);
+  public Partition(String id, String type, ArrayList<Area> areas) {
+    super(id, type);
     this.areas = areas;
   }
 
   @Override
   public ArrayList<Space> getSpaces() {
-    return null;
+    ArrayList<Space> spaces = new ArrayList<>();
+    for (Area area : areas) {
+      if (area.getType().equals("space")) {
+        if (!spaces.contains((Space) area))
+          spaces.add((Space) area);
+      }
+      else {
+        spaces.addAll(area.getSpaces());
+      }
+    }
+
+    return spaces;
   }
 
   @Override
   public ArrayList<Door> getDoorsGivingAccess() {
     ArrayList<Door> doors = new ArrayList<>();
     for (Area area : areas) {
-      doors.addAll(area.getDoorsGivingAccess());
+      for (Door d : area.getDoorsGivingAccess()) {
+        if (!doors.contains(d)) {
+          doors.add(d);
+        }
+      }
     }
-
     return doors;
   }
 

@@ -9,13 +9,17 @@ import java.util.ArrayList;
  * is part of the Composite pattern.
  */
 public abstract class Area {
-  String id;
+  protected final String id;
+  protected final String type;
 
-  public Area(String id) {
+  public Area(String id, String type) {
     this.id = id;
+    this.type = type;
   }
 
   public String getId() { return id; }
+
+  public String getType() { return type; }
 
   public abstract ArrayList<Door> getDoorsGivingAccess();
 
