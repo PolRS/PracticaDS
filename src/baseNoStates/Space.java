@@ -6,8 +6,8 @@ import java.util.Arrays;
 public class Space extends Area {
   private final ArrayList<Door> doors = new ArrayList<>();
 
-  public Space(String id) {
-    super(id);
+  public Space(String id, String type) {
+    super(id, type);
   }
 
   public void addDoor(Door door) { doors.add(door); }
