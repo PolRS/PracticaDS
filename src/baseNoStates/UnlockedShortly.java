@@ -1,15 +1,25 @@
 package baseNoStates;
 
-public class UnlockedShortly extends DoorState{
+import baseNoStates.Main;
+import java.util.Observable;
+import java.util.Observer;
+
+public class UnlockedShortly extends DoorState implements Observer {
 
     private int timeLeftOpen;
     private static final int DEFAULT_TIME_OPEN = 10;
+    private Clock USClock;
     public UnlockedShortly(Door door) {
         super(door,false);
         this.timeLeftOpen = DEFAULT_TIME_OPEN;
         this.name="unlocked_shortly";
+
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+
+    }
     @Override
     public void open() {
         assert false;
