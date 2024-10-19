@@ -1,8 +1,10 @@
 package baseNoStates.requests;
 
-import baseNoStates.DirectoryDoors;
+import baseNoStates.DirectoryAreas;
 import baseNoStates.Door;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -31,7 +33,9 @@ public class RequestRefresh implements Request {
   // works or not, retrieves the state of all the doors so that the simulator can
   // repaint the readers
   public void process() {
-    for (Door door : DirectoryDoors.getAllDoors()) {
+    Iterator<Door> it = DirectoryAreas.getAllDoors();
+    while(it.hasNext()){
+      Door door = it.next();
       jsonsDoors.add(door.toJson());
     }
   }

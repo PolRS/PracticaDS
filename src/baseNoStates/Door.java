@@ -8,10 +8,23 @@ public class Door {
   private final String id;
   private DoorState doorState;
 
+  private Space fromSpace;
+  private Space toSpace;
 
-  public Door(String id) {
+  public Door(String id, Space fS, Space tS) {
     this.id = id;
     doorState = new UnlockedClosed(this);
+
+    this.fromSpace = fS;
+    this.toSpace = tS;
+  }
+
+  public Space getFromSpace(){
+    return fromSpace;
+  }
+
+  public Space getToSpace(){
+    return toSpace;
   }
 
   public void processRequest(RequestReader request) {

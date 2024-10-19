@@ -10,20 +10,25 @@ import java.util.ArrayList;
  */
 public abstract class Area {
   protected final String id;
-  protected final String type;
 
-  public Area(String id, String type) {
+  protected Area parentArea;
+
+  public Area(String id, Area pA) {
     this.id = id;
-    this.type = type;
+    this.parentArea = pA;
   }
 
   public String getId() { return id; }
 
-  public String getType() { return type; }
+  public Area getParentArea(){return parentArea;}
 
-  public abstract ArrayList<Door> getDoorsGivingAccess();
-
-  public abstract  Area findAreaById(String id);
-
-  public abstract ArrayList<Space> getSpaces();
+  public boolean belongsInside(Area a){
+    if(this.equals(a)){
+      return true;
+    }else if(this.parentArea == null){
+      return false;
+    }else{
+      return this.parentArea.belongsInside(a);
+    }
+  }
 }
