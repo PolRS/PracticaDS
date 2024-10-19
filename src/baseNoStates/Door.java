@@ -6,14 +6,12 @@ import org.json.JSONObject;
 
 public class Door {
   private final String id;
-  private boolean closed; // physically
   private DoorState doorState;
 
 
   public Door(String id) {
     this.id = id;
-    closed = true;
-    doorState = new Locked(this);
+    doorState = new UnlockedClosed(this);
   }
 
   public void processRequest(RequestReader request) {
@@ -31,20 +29,43 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
-        doorState.open(this);
+        if(doorState instanceof UnlockedClosed){
+          doorState.open();
+        }else{
+          System.out.println("Door already open or locked.");
+        }
         break;
+
       case Actions.CLOSE:
-        doorState.close(this);
+        if(doorState instanceof UnlockedOpen || doorState instanceof UnlockedShortly || doorState instanceof OpenPropped){
+          doorState.close();
+        }else{
+          System.out.println("Door already closed.");
+        }
         break;
+
       case Actions.LOCK:
-        // TODO
-        // fall through
+        if(doorState instanceof UnlockedClosed){
+          doorState.lock();
+        }else{
+          System.out.println("Door already locked or open.");
+        }
+        break;
+
       case Actions.UNLOCK:
-        // TODO
-        // fall through
+        if(doorState instanceof LockedClosed){
+          doorState.unlock();
+        }else{
+          System.out.println("Door already unlocked or open.");
+        }
+        break;
+
       case Actions.UNLOCK_SHORTLY:
-        // TODO
-        System.out.println("Action " + action + " not implemented yet");
+        if(doorState instanceof LockedClosed){
+          doorState.open();
+        }else{
+          System.out.println("Door already open or unlocked.");
+        }
         break;
       default:
         assert false : "Unknown action " + action;
@@ -53,11 +74,7 @@ public class Door {
   }
 
   public boolean isClosed() {
-    return closed;
-  }
-
-  public void setClosed(boolean closed) {
-    this.closed = closed;
+    return this.doorState.isClosed();
   }
 
   public String getId() {
@@ -68,11 +85,16 @@ public class Door {
     return doorState.getName();
   }
 
+  public void setState(DoorState ds){
+    this.doorState = ds;
+  }
+
+
   @Override
   public String toString() {
     return "Door{"
         + ", id='" + id + '\''
-        + ", closed=" + closed
+        + ", closed=" + this.isClosed()
         + ", state=" + getStateName()
         + "}";
   }
@@ -81,7 +103,7 @@ public class Door {
     JSONObject json = new JSONObject();
     json.put("id", id);
     json.put("state", getStateName());
-    json.put("closed", closed);
+    json.put("closed", isClosed());
     return json;
   }
 }
