@@ -7,24 +7,11 @@ import org.json.JSONObject;
 public class Door {
   private final String id;
   private DoorState doorState;
+  private static final Clock clock = new Clock();
 
-  private Space fromSpace;
-  private Space toSpace;
-
-  public Door(String id, Space fS, Space tS) {
+  public Door(String id) {
     this.id = id;
     doorState = new UnlockedClosed(this);
-
-    this.fromSpace = fS;
-    this.toSpace = tS;
-  }
-
-  public Space getFromSpace(){
-    return fromSpace;
-  }
-
-  public Space getToSpace(){
-    return toSpace;
   }
 
   public void processRequest(RequestReader request) {
@@ -75,7 +62,8 @@ public class Door {
 
       case Actions.UNLOCK_SHORTLY:
         if(doorState instanceof LockedClosed){
-          doorState.open();
+          doorState.unlockShortly();
+
         }else{
           System.out.println("Door already open or unlocked.");
         }
@@ -101,7 +89,10 @@ public class Door {
   public void setState(DoorState ds){
     this.doorState = ds;
   }
-
+  ////////////////////
+  public Clock getClock(){
+    return clock;
+  }
 
   @Override
   public String toString() {
