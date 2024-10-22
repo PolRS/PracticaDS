@@ -7,10 +7,14 @@ import org.json.JSONObject;
 public class Door {
   private final String id;
   private DoorState doorState;
+  private final Space from;
+  private final Space to;
   private static final Clock clock = new Clock();
 
-  public Door(String id) {
+  public Door(String id, Space from, Space to) {
     this.id = id;
+    this.from = from;
+    this.to = to;
     doorState = new UnlockedClosed(this);
   }
 
@@ -89,6 +93,12 @@ public class Door {
   public void setState(DoorState ds){
     this.doorState = ds;
   }
+
+  public Space getFrom() {
+    return from;
+  }
+
+  public Space getTo() { return to; }
   ////////////////////
   public Clock getClock(){
     return clock;

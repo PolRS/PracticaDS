@@ -8,8 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Schedule {
-
-
     private LocalTime timeStart;
     private LocalTime timeEnd;
 

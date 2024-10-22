@@ -95,8 +95,8 @@ public class RequestReader implements Request {
       addReason("user doesn't exists");
     } else {
 
-      Area from = door.getFromSpace();
-      Area to = door.getToSpace();
+      Area from = door.getFrom();
+      Area to = door.getTo();
       LocalDateTime time = now;
 
       boolean permission1 = user.getUserGroup().getPermission().checkPermission(from, time);
