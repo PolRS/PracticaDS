@@ -16,16 +16,25 @@ public class Permission {
 
     public boolean checkPermission(Area area, LocalDateTime moment){
         boolean permissionGrantedArea = false;
-        Iterator<Area> it = areasConceded.iterator();
-        while (it.hasNext()){
-            Area a = it.next();
-            assert a != null : "Null Area";
-            if(a.belongsInside(area)){
+
+        System.out.println(areasConceded.size());
+        System.out.println(areasConceded.getFirst().getId());
+
+        for (Area a : areasConceded) {
+
+            assert a != null : "a ins NULL";
+            System.out.println(area.getId());
+            assert area != null : "Area is NULL ";
+
+            if (a.belongsInside(area)) {
                 permissionGrantedArea = true;
             }
         }
 
         boolean permissionGrantedTime = schedules.checkIfInSchedule(moment);
+
+        System.out.println("LOCAL :"+permissionGrantedArea);
+        System.out.println("TEMPO : "+permissionGrantedTime);
 
         return (permissionGrantedArea && permissionGrantedTime);
 

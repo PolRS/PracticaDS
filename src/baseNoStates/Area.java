@@ -20,15 +20,14 @@ public abstract class Area {
 
   public String getId() { return id; }
 
-  public Area getParentArea(){return parentArea;}
 
   public boolean belongsInside(Area a){
-    if(this.equals(a)){
+    if(this.getId().equals(a.getId())){
       return true;
-    }else if(this.parentArea == null){
+    }else if(a.parentArea == null){
       return false;
     }else{
-      return this.parentArea.belongsInside(a);
+      return this.belongsInside(a.parentArea);
     }
   }
 }

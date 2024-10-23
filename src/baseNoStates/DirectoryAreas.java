@@ -18,9 +18,10 @@ public final class DirectoryAreas {
     allAreas = new ArrayList<>();
 
     Area building = new Partition("building", null);
+    allAreas.add(building);
 
     // basement
-    Partition basement = new Partition("exterior", building);
+    Partition basement = new Partition("basement", building);
     Space parking = new Space("parking", basement);
     Space exterior = new Space("exterior", basement);
     Space stairs = new Space("stairs", basement);

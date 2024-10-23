@@ -40,6 +40,9 @@ public class RequestReader implements Request {
     return authorized;
   }
 
+  public void forceAuthorization(){
+    this.authorized = true;
+  }
   public void addReason(String reason) {
     reasons.add(reason);
   }
@@ -77,9 +80,12 @@ public class RequestReader implements Request {
   // if authorized, perform the action.
   public void process() {
     User user = DirectoryUserGroups.findUserByCredential(credential);
+    assert user != null : "user " + credential + " not found";
     Door door = DirectoryAreas.findDoorById(doorId);
     assert door != null : "door " + doorId + " not found";
+
     authorize(user, door);
+
     // this sets the boolean authorize attribute of the request
     door.processRequest(this);
     // even if not authorized we process the request, so that if desired we could log all
@@ -97,10 +103,16 @@ public class RequestReader implements Request {
 
       Area from = door.getFrom();
       Area to = door.getTo();
+
+      assert from != null: door.getId()+" has no FROM space";
+      assert to != null: door.getId()+" has no TO space";
+
       LocalDateTime time = now;
+
 
       boolean permission1 = user.getUserGroup().getPermission().checkPermission(from, time);
       boolean permission2 = user.getUserGroup().getPermission().checkPermission(to, time);
+
 
       authorized = permission1 && permission2;
     }

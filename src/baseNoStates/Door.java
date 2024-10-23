@@ -21,12 +21,30 @@ public class Door {
   public void processRequest(RequestReader request) {
     // it is the Door that process the request because the door has and knows
     // its state, and if closed or open
+
+    String action = request.getAction();
+
+
     if (request.isAuthorized()) {
-      String action = request.getAction();
       doAction(action);
     } else {
       System.out.println("not authorized");
     }
+
+    //Added some specific States
+    if( ( (this.doorState instanceof UnlockedOpen) && action.equals(Actions.CLOSE)    )
+     || ( (this.doorState instanceof UnlockedClosed) && action.equals(Actions.OPEN)   )
+     || ( (this.doorState instanceof OpenPropped) && action.equals(Actions.CLOSE)     )
+     || ( (this.doorState instanceof UnlockedShortly) && action.equals(Actions.CLOSE) )
+    ){
+      request.forceAuthorization();
+      doAction(action);
+      System.out.println("action performed with no autorization");
+    }
+
+
+
+
     request.setDoorStateName(getStateName());
   }
 
