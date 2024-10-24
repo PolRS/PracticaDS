@@ -3,7 +3,6 @@ package baseNoStates;
 import java.util.List;
 
 public class UserGroup {
-    
     private String nameOfTheGroup;
     private Permission permission;
     

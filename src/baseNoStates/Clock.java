@@ -31,8 +31,4 @@ public class Clock extends Observable {
         setChanged();
         notifyObservers();
     }
-
-
-
-
 }

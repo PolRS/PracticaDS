@@ -12,7 +12,6 @@ import java.util.Iterator;
 public final class DirectoryAreas {
   private static ArrayList<Door> allDoors;
   private static ArrayList<Area> allAreas;
-  private static Area rootArea;
 
   public static void makeAreas() {
     allAreas = new ArrayList<>();

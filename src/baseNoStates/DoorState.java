@@ -18,9 +18,8 @@ public abstract class DoorState {
   public abstract void close();
   public abstract void lock();
   public abstract void unlock();
-
   public abstract void unlockShortly();
 
-  public boolean isClosed(){return isClosed;};
+  public boolean isClosed(){ return isClosed; };
 
 }

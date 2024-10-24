@@ -5,7 +5,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class UnlockedShortly extends DoorState implements Observer {
-
     private int timeLeftOpen;
     private static final int DEFAULT_TIME_OPEN = 10;
 

@@ -9,6 +9,4 @@ public class Space extends Area {
   public Space(String id, Area parentArea) {
     super(id, parentArea);
   }
-
-
 }
