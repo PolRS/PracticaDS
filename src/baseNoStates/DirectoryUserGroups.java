@@ -86,7 +86,7 @@ public final class DirectoryUserGroups {
     // all spaces
     Area building = DirectoryAreas.findAreaById("building");
     List<Area> accessManagers = new ArrayList<>(Arrays.asList(building));
-
+    // Schedule
     LocalDateTime periodStartManagers = LocalDateTime.of(2024, 9, 1, 0, 0);
     LocalDateTime periodEndManagers = LocalDateTime.of(2025, 3, 1, 0, 0);
     LocalTime timeStartManagers = LocalTime.of(8,0);
@@ -100,21 +100,21 @@ public final class DirectoryUserGroups {
             DayOfWeek.SATURDAY,
             DayOfWeek.SUNDAY));
     Schedule scheduleManagers= new Schedule(timeStartManagers,timeEndManagers,daysManagers,periodStartManagers,periodEndManagers);
-
+    // Permission
     Permission permissionManagers = new Permission(accessManagers, scheduleManagers,true);
     UserGroup managerGroup = new UserGroup("managers", permissionManagers);
-
+    // Add Users to group
     users.add(new User("Manel", "95783", managerGroup));
     users.add(new User("Marta", "05827", managerGroup));
 
-    // admin :
+
+    // ADMIN :
     // always=Jan. 1 this year to 2100
     // all days of the week
     // all actions
     // all spaces
-
     List<Area> accessAdmin = new ArrayList<>(Arrays.asList(building));
-
+    // Schedule
     LocalDateTime periodStartAdmin = LocalDateTime.of(2024, 1, 1, 0, 0);
     LocalDateTime periodEndAdmin = LocalDateTime.of(2100, 1, 1, 0, 0);
     LocalTime timeStartAdmin = LocalTime.of(0,0);
@@ -128,12 +128,13 @@ public final class DirectoryUserGroups {
             DayOfWeek.SATURDAY,
             DayOfWeek.SUNDAY));
     Schedule scheduleAdmin= new Schedule(timeStartAdmin,timeEndAdmin,daysAdmin,periodStartAdmin,periodEndAdmin);
-
+    // Permission
     Permission permissionAdmin = new Permission(accessAdmin, scheduleAdmin, true);
     UserGroup adminGroup = new UserGroup("admin", permissionAdmin);
     users.add(new User("Ana", "11343", adminGroup));
   }
 
+  // Find a user by their credential
   public static User findUserByCredential(String credential) {
     for (User user : users) {
       if (user.getCredential().equals(credential)) {

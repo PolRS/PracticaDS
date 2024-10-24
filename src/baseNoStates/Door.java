@@ -3,7 +3,7 @@ package baseNoStates;
 import baseNoStates.requests.RequestReader;
 import org.json.JSONObject;
 
-
+// Door class that represents a door in the system
 public class Door {
   private final String id;
   private DoorState doorState;
@@ -11,6 +11,7 @@ public class Door {
   private final Space to;
   private static final Clock clock = new Clock();
 
+  // Constructor (all doors are initially unlocked and closed by default)
   public Door(String id, Space from, Space to) {
     this.id = id;
     this.from = from;
@@ -18,6 +19,7 @@ public class Door {
     doorState = new UnlockedClosed(this);
   }
 
+  // Process a request
   public void processRequest(RequestReader request) {
     // it is the Door that process the request because the door has and knows
     // its state, and if closed or open
@@ -31,7 +33,8 @@ public class Door {
       System.out.println("not authorized");
     }
 
-    //Added some specific States
+    // Added some specific unauthorized actions
+    // since some actions might be performed without authorization
     if( ( (this.doorState instanceof UnlockedOpen) && action.equals(Actions.CLOSE)    )
      || ( (this.doorState instanceof UnlockedClosed) && action.equals(Actions.OPEN)   )
      || ( (this.doorState instanceof OpenPropped) && action.equals(Actions.CLOSE)     )
@@ -42,12 +45,11 @@ public class Door {
       System.out.println("action performed with no autorization");
     }
 
-
-
-
     request.setDoorStateName(getStateName());
   }
 
+  // Perform an action on the door
+  // possibly changing its state
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
@@ -96,32 +98,40 @@ public class Door {
     }
   }
 
+  //returns if the door is closed
   public boolean isClosed() {
     return this.doorState.isClosed();
   }
 
+  //returns the door id
   public String getId() {
     return id;
   }
 
+  //returns the door state name
   public String getStateName() {
     return doorState.getName();
   }
 
+  //sets the door state
   public void setState(DoorState ds){
     this.doorState = ds;
   }
 
+  //returns the door "From" area
   public Space getFrom() {
     return from;
   }
 
+  //returns the door "To" area
   public Space getTo() { return to; }
-  ////////////////////
+  
+
   public Clock getClock(){
     return clock;
   }
 
+  //returns the door as a string for JSON
   @Override
   public String toString() {
     return "Door{"
@@ -131,6 +141,7 @@ public class Door {
         + "}";
   }
 
+  //returns the door as a JSON object
   public JSONObject toJson() {
     JSONObject json = new JSONObject();
     json.put("id", id);

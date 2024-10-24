@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Class that stores which areas are part of a partition,
- * can get both areas and doors that are part of it,
+ * Class that represensts a subdivision of an area.
  * is part of the Composite pattern.
  */
 public class Partition extends Area {
