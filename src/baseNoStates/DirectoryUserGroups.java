@@ -11,16 +11,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+// This class is a directory of all userGroups
+// and users in the system.
 public final class DirectoryUserGroups {
   private static final List<User> users = new ArrayList<>();
   private static final List<UserGroup> userGroups = new ArrayList<>();
   public static void makeUserGroups() {
-    //FOR ALL:
-    // - Create List of areas
+    //FOR ALL GROUPS :
+    // - Create List of Areas
     // - Create a Schedule Object
     // - Use them to create a Permission Object
     // - Create a UserGroup Object with said Permision
-    // - Create Users
+    // - Create Users in the group
+
 
     // BLANK :
     // users without any privilege, just to keep temporally users instead of deleting them,
@@ -33,16 +36,17 @@ public final class DirectoryUserGroups {
     LocalTime timeStartBlank = LocalTime.of(0,0);
     LocalTime timeEndBlank = LocalTime.of(0,0);
     List<DayOfWeek> daysBlank = new ArrayList<>();
-
+    // Empty schedule
     Schedule scheduleBlank = new Schedule(timeStartBlank,timeEndBlank,daysBlank,periodStartBlank,periodEndBlank);
-
-    Permission permissionBlank = new Permission(accessBlank, scheduleBlank);
+    // Empty permission
+    Permission permissionBlank = new Permission(accessBlank, scheduleBlank,false);
     // New Group
     UserGroup blankUserGroup = new UserGroup("blank", permissionBlank);
     userGroups.add(blankUserGroup);
     // Add Users to group
     users.add(new User("Bernat", "12345", blankUserGroup));
     users.add(new User("Blai", "77532", blankUserGroup));
+
 
     // EMPLOYEES :
     // Sep. 1 this year to Mar. 1 next year
@@ -54,7 +58,7 @@ public final class DirectoryUserGroups {
     Area exterior = DirectoryAreas.findAreaById("exterior");
     Area stairs = DirectoryAreas.findAreaById("stairs");
     List<Area> accessEmployees = new ArrayList<>(Arrays.asList(groundFloor, floor1, exterior, stairs));
-
+    // Schedule
     LocalDateTime periodStartEmployees = LocalDateTime.of(2024, 9, 1, 0, 0);
     LocalDateTime periodEndEmployees = LocalDateTime.of(2025, 3, 1, 0, 0);
     LocalTime timeStartEmployess = LocalTime.of(9,0);
@@ -66,13 +70,12 @@ public final class DirectoryUserGroups {
             DayOfWeek.THURSDAY,
             DayOfWeek.FRIDAY));
     Schedule scheduleEmployees= new Schedule(timeStartEmployess,timeEndEmployess,daysEmployees,periodStartEmployees,periodEndEmployees);
-
-    Permission permissionEmployess = new Permission(accessEmployees, scheduleEmployees);
-
-
+    // Permission
+    Permission permissionEmployess = new Permission(accessEmployees, scheduleEmployees,false);
+    // UserGroup
     UserGroup employeesUserGroup = new UserGroup("employees", permissionEmployess);
     userGroups.add(blankUserGroup);
-
+    // Add Users to group
     users.add(new User("Ernest", "74984",employeesUserGroup));
     users.add(new User("Eulalia", "43295", employeesUserGroup));
 
@@ -98,7 +101,7 @@ public final class DirectoryUserGroups {
             DayOfWeek.SUNDAY));
     Schedule scheduleManagers= new Schedule(timeStartManagers,timeEndManagers,daysManagers,periodStartManagers,periodEndManagers);
 
-    Permission permissionManagers = new Permission(accessManagers, scheduleManagers);
+    Permission permissionManagers = new Permission(accessManagers, scheduleManagers,true);
     UserGroup managerGroup = new UserGroup("managers", permissionManagers);
 
     users.add(new User("Manel", "95783", managerGroup));
@@ -126,7 +129,7 @@ public final class DirectoryUserGroups {
             DayOfWeek.SUNDAY));
     Schedule scheduleAdmin= new Schedule(timeStartAdmin,timeEndAdmin,daysAdmin,periodStartAdmin,periodEndAdmin);
 
-    Permission permissionAdmin = new Permission(accessAdmin, scheduleAdmin);
+    Permission permissionAdmin = new Permission(accessAdmin, scheduleAdmin, true);
     UserGroup adminGroup = new UserGroup("admin", permissionAdmin);
     users.add(new User("Ana", "11343", adminGroup));
   }

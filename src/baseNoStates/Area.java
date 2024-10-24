@@ -20,7 +20,8 @@ public abstract class Area {
 
   public String getId() { return id; }
 
-
+  // checks if the @area is a child of this area
+  // or if it is the same area recursively
   public boolean belongsInside(Area a){
     if(this.getId().equals(a.getId())){
       return true;

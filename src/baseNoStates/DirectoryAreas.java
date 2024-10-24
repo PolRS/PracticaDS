@@ -13,9 +13,12 @@ public final class DirectoryAreas {
   private static ArrayList<Door> allDoors;
   private static ArrayList<Area> allAreas;
 
+
+  //creates all areas and doors
   public static void makeAreas() {
     allAreas = new ArrayList<>();
 
+    // building
     Area building = new Partition("building", null);
     allAreas.add(building);
 
@@ -64,6 +67,7 @@ public final class DirectoryAreas {
     allDoors = new ArrayList<>(Arrays.asList(d1, d2, d3, d4, d5, d6, d7, d8, d9));
   }
 
+  //finds a door by its id
   public static Door findDoorById(String id) {
     for (Door door : allDoors) {
       if (door.getId().equals(id)) {
@@ -74,6 +78,7 @@ public final class DirectoryAreas {
     return null; // otherwise we get a Java error
   }
 
+  //finds an area by its id
   public static Area findAreaById(String id){
     for (Area area : allAreas) {
       if (area.getId().equals(id)) {
@@ -84,7 +89,7 @@ public final class DirectoryAreas {
     return null; // otherwise we get a Java error
   }
 
-  // this is needed by RequestRefresh
+  // returns an iterator of all areas
   public static Iterator<Door> getAllDoors() {
     System.out.println(allDoors);
     return allDoors.iterator();

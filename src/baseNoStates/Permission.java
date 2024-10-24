@@ -8,17 +8,17 @@ public class Permission {
 
     private List<Area> areasConceded;
     private Schedule schedules;
+    private boolean canLockAndUnlock;
 
-    public Permission(List<Area> areasConceded, Schedule schedules){
+    public Permission(List<Area> areasConceded, Schedule schedules, boolean canUnlock) {
         this.areasConceded = areasConceded;
         this.schedules = schedules;
+        this.canLockAndUnlock = canUnlock;
     }
 
     public boolean checkPermission(Area area, LocalDateTime moment){
         boolean permissionGrantedArea = false;
 
-        System.out.println(areasConceded.size());
-        System.out.println(areasConceded.getFirst().getId());
 
         for (Area a : areasConceded) {
 
@@ -40,6 +40,7 @@ public class Permission {
 
     }
 
-
-
+    public boolean canLockAndUnlock() {
+        return canLockAndUnlock;
+    }
 }

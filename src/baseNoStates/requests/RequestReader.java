@@ -3,9 +3,7 @@ package baseNoStates.requests;
 import baseNoStates.*;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -113,9 +111,16 @@ public class RequestReader implements Request {
       boolean permission1 = user.getUserGroup().getPermission().checkPermission(from, time);
       boolean permission2 = user.getUserGroup().getPermission().checkPermission(to, time);
 
+      boolean permissionToUnlock = user.getUserGroup().getPermission().canLockAndUnlock();
 
-      authorized = permission1 && permission2;
-    }
+      if(this.getAction().equals(Actions.LOCK) || this.getAction().equals(Actions.UNLOCK)){
+        authorized = permission1 && permission2 && permissionToUnlock;
+      }else {
+        authorized = permission1 && permission2;
+      }
+
+
+      }
   }
 }
 
