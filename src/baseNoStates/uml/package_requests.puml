@@ -32,6 +32,7 @@ package requests {
     + setDoorStateName(name : String)
     + getAction() : String
     + isAuthorized() : boolean
+    + forceAuthorization()
     }
 
     class RequestArea implements Request {
