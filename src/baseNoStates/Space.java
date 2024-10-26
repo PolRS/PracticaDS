@@ -2,6 +2,7 @@ package baseNoStates;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Class that represensts a specific Space.
@@ -13,5 +14,14 @@ public class Space extends Area {
 
   public Space(String id, Area parentArea) {
     super(id, parentArea);
+  }
+
+  @Override
+  public List<Door> getDoorsGivingAccess(){
+    return this.doors;
+  }
+
+  public void addDoor(Door d){
+    this.doors.add(d);
   }
 }

@@ -27,7 +27,7 @@ public class UnlockedShortly extends DoorState implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         tickCounter++;
-        if (tickCounter == 10) {
+        if (tickCounter == DEFAULT_TIME_OPEN) {
             ((Clock) o).deleteObserver(this);  // Remove this door from the observer list
             this.door.setState(new OpenPropped(this.door));
         }

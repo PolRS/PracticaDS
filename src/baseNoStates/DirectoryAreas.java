@@ -25,8 +25,8 @@ public final class DirectoryAreas {
     // basement
     Partition basement = new Partition("basement", building);
     Space parking = new Space("parking", basement);
-    Space exterior = new Space("exterior", basement);
-    Space stairs = new Space("stairs", basement);
+    Space exterior = new Space("exterior", building);
+    Space stairs = new Space("stairs", building);
     allAreas.add(basement);
     allAreas.add(parking);
     allAreas.add(exterior);
@@ -36,7 +36,7 @@ public final class DirectoryAreas {
     Door d2 = new Door("D2",stairs,parking); // stairs, parking
 
     // ground floor
-    Partition groundFloor = new Partition("ground floor", building);
+    Partition groundFloor = new Partition("ground_floor", building);
     Space hall = new Space("hall", groundFloor);
     Space room1 = new Space("room1", groundFloor);
     Space room2 = new Space("room2", groundFloor);

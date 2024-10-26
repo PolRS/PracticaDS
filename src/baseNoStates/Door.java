@@ -16,6 +16,8 @@ public class Door {
     this.id = id;
     this.from = from;
     this.to = to;
+    this.from.addDoor(this);
+    this.to.addDoor(this);
     doorState = new UnlockedClosed(this);
   }
 

@@ -72,12 +72,16 @@ public class RequestArea implements Request {
     Area area = DirectoryAreas.findAreaById(areaId);
     // an Area is a Space or a Partition
     if (area != null) {
+
       // is null when from the app we click on an action but no place is selected because
       // there (flutter) I don't control like I do in javascript that all the parameters are provided
 
       // Make all the door requests, one for each door in the area, and process them.
       // Look for the doors in the spaces of this area that give access to them.
       for (Door door : area.getDoorsGivingAccess()) {
+
+        System.out.println(door.getId());
+
         RequestReader requestReader = new RequestReader(credential, action, now, door.getId());
         requestReader.process();
         // after process() the area request contains the answer as the answer
@@ -85,6 +89,7 @@ public class RequestArea implements Request {
         requests.add(requestReader);
       }
     }
+    System.out.println("SPACE NOT FOUND");
 
   }
 }
