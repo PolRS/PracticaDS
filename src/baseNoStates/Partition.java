@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Class that represensts a subdivision of an area.
+ * Class that represents a subdivision of an area.
  * is part of the Composite pattern.
  */
 public class Partition extends Area {
@@ -15,6 +15,16 @@ public class Partition extends Area {
     this.areas = areas;
   }
 
+  public ArrayList<Door> getDoorsGivingAccess() {
+    ArrayList<Door> doors = new ArrayList<>();
+    for (Area area : areas) {
+      if (area instanceof Partition) {
+        area.getDoorsGivingAccess();
+      } else {
+        doors.addAll(area.getDoorsGivingAccess());
+      }
+    }
 
-
+    return doors;
+  }
 }

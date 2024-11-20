@@ -2,8 +2,8 @@ package baseNoStates;
 
 public class LockedClosed extends DoorState {
   public LockedClosed(Door door) {
-    super(door,true);
-    this.name="locked";
+    super(door, true);
+    this.name = "locked";
   }
 
   //cannot open a locked door

@@ -1,9 +1,9 @@
 package baseNoStates;
 
-public class UnlockedOpen extends DoorState{
+public class UnlockedOpen extends DoorState {
   public UnlockedOpen(Door door) {
-    super(door,false);
-    this.name="unlocked";
+    super(door, false);
+    this.name = "unlocked";
   }
 
   //cannot open a door that is already open
@@ -31,7 +31,7 @@ public class UnlockedOpen extends DoorState{
   }
 
   //cannot unlock a door that is already unlocked
-  public void unlockShortly(){
+  public void unlockShortly() {
     assert false;
   }
 }

@@ -14,11 +14,11 @@ public class UnlockedShortly extends DoorState implements Observer {
     private int tickCounter;
 
     public UnlockedShortly(Door door) {
-        super(door,false);
+        super(door, false);
 
         // Since the door is unlocked, it will be locked shortly
         this.timeLeftOpen = DEFAULT_TIME_OPEN;
-        this.name="unlocked_shortly";
+        this.name = "unlocked_shortly";
         this.door.getClock().addObserver(this);
         this.door.getClock().startClock();
     }
@@ -27,7 +27,7 @@ public class UnlockedShortly extends DoorState implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         tickCounter++;
-        if (tickCounter == DEFAULT_TIME_OPEN) {
+        if (tickCounter == 10) {
             ((Clock) o).deleteObserver(this);  // Remove this door from the observer list
             this.door.setState(new OpenPropped(this.door));
         }
@@ -65,10 +65,10 @@ public class UnlockedShortly extends DoorState implements Observer {
 
     // refreshes the timer
     // if the timer reaches 0, the door will be propped
-    public void refreshTimer(){
-        if(this.timeLeftOpen > 1){
+    public void refreshTimer() {
+        if (this.timeLeftOpen > 1) {
             this.timeLeftOpen--;
-        }else{
+        } else{
             this.door.setState(new OpenPropped(this.door));
         }
     }

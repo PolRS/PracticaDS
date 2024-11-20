@@ -3,7 +3,7 @@ package baseNoStates;
 public class OpenPropped extends DoorState{
     public OpenPropped(Door door) {
         super(door,false);
-        this.name="propped";
+        this.name = "propped";
     }
 
     //cannot open a door already open

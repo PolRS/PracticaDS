@@ -1,13 +1,13 @@
 package baseNoStates;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
- * Class that represensts a specific Space.
+ * Class that represents a specific Space.
  * is part of the Composite pattern.
- * It is a leaf in the composite pattern, wich means it has no subSpaces.
+ * It is a leaf in the composite pattern, which means it has no subSpaces.
  */
 public class Space extends Area {
   private final ArrayList<Door> doors = new ArrayList<>();
@@ -16,12 +16,7 @@ public class Space extends Area {
     super(id, parentArea);
   }
 
-  @Override
-  public List<Door> getDoorsGivingAccess(){
-    return this.doors;
-  }
-
-  public void addDoor(Door d){
-    this.doors.add(d);
+  public ArrayList<Door> getDoorsGivingAccess() {
+    return doors;
   }
 }

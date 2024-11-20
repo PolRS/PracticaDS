@@ -24,7 +24,7 @@ public class Schedule {
     private List<DayOfWeek> daysOfWeek;
 
 
-    public Schedule (LocalTime timeStart, LocalTime timeEnd, List<DayOfWeek>  weekDay, LocalDateTime beginingValid, LocalDateTime endValid){
+    public Schedule(LocalTime timeStart, LocalTime timeEnd, List<DayOfWeek>  weekDay, LocalDateTime beginingValid, LocalDateTime endValid) {
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
         this.beginingValid = beginingValid;
@@ -33,7 +33,7 @@ public class Schedule {
     }
 
     //Checks if a moment is inside the schedule
-    public boolean checkIfInSchedule(LocalDateTime moment){
+    public boolean checkIfInSchedule(LocalDateTime moment) {
         //Checks date in calendar level
         boolean validDate = (moment.isAfter(beginingValid) && moment.isBefore(endValid));
 

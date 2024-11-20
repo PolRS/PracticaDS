@@ -26,7 +26,7 @@ public class User {
   }
 
   //returns the group of the user
-  public UserGroup getUserGroup(){
+  public UserGroup getUserGroup() {
     return this.group;
   }
 }

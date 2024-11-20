@@ -25,18 +25,18 @@ public final class DirectoryAreas {
     // basement
     Partition basement = new Partition("basement", building);
     Space parking = new Space("parking", basement);
-    Space exterior = new Space("exterior", building);
-    Space stairs = new Space("stairs", building);
+    Space exterior = new Space("exterior", basement);
+    Space stairs = new Space("stairs", basement);
     allAreas.add(basement);
     allAreas.add(parking);
     allAreas.add(exterior);
     allAreas.add(stairs);
 
-    Door d1 = new Door("D1",exterior,parking); // exterior, parking
-    Door d2 = new Door("D2",stairs,parking); // stairs, parking
+    Door d1 = new Door("D1", exterior, parking); // exterior, parking
+    Door d2 = new Door("D2", stairs, parking); // stairs, parking
 
     // ground floor
-    Partition groundFloor = new Partition("ground_floor", building);
+    Partition groundFloor = new Partition("ground floor", building);
     Space hall = new Space("hall", groundFloor);
     Space room1 = new Space("room1", groundFloor);
     Space room2 = new Space("room2", groundFloor);
@@ -45,10 +45,10 @@ public final class DirectoryAreas {
     allAreas.add(room1);
     allAreas.add(room2);
 
-    Door d3 = new Door("D3",exterior,hall); // exterior, hall
-    Door d4 = new Door("D4",stairs,hall); // stairs, hall
-    Door d5 = new Door("D5",hall,room1); // hall, room1
-    Door d6 = new Door("D6",hall,room2); // hall, room2
+    Door d3 = new Door("D3", exterior, hall); // exterior, hall
+    Door d4 = new Door("D4", stairs, hall); // stairs, hall
+    Door d5 = new Door("D5", hall, room1); // hall, room1
+    Door d6 = new Door("D6", hall, room2); // hall, room2
 
     // first floor
     Partition firstFloor = new Partition("floor1", building);
@@ -60,9 +60,9 @@ public final class DirectoryAreas {
     allAreas.add(room3);
     allAreas.add(it);
 
-    Door d7 = new Door("D7",stairs,corridor); // stairs, corridor
-    Door d8 = new Door("D8",corridor,room3); // corridor, room3
-    Door d9 = new Door("D9",corridor,it); // corridor, IT
+    Door d7 = new Door("D7", stairs, corridor); // stairs, corridor
+    Door d8 = new Door("D8", corridor, room3); // corridor, room3
+    Door d9 = new Door("D9", corridor, it); // corridor, IT
 
     allDoors = new ArrayList<>(Arrays.asList(d1, d2, d3, d4, d5, d6, d7, d8, d9));
   }
@@ -79,7 +79,7 @@ public final class DirectoryAreas {
   }
 
   //finds an area by its id
-  public static Area findAreaById(String id){
+  public static Area findAreaById(String id) {
     for (Area area : allAreas) {
       if (area.getId().equals(id)) {
         return area;
@@ -94,5 +94,4 @@ public final class DirectoryAreas {
     System.out.println(allDoors);
     return allDoors.iterator();
   }
-
 }

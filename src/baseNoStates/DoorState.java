@@ -26,6 +26,8 @@ public abstract class DoorState {
   public abstract void unlockShortly();
 
   // isClosed returns if specidfic state is closed
-  public boolean isClosed(){ return isClosed; };
+  public boolean isClosed() {
+    return isClosed;
+  }
 
 }

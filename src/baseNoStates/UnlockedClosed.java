@@ -2,8 +2,8 @@ package baseNoStates;
 
 public class UnlockedClosed extends DoorState{
     public UnlockedClosed(Door door) {
-        super(door,true);
-        this.name="unlocked";
+        super(door, true);
+        this.name = "unlocked";
     }
 
     // opens the door

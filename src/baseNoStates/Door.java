@@ -16,8 +16,6 @@ public class Door {
     this.id = id;
     this.from = from;
     this.to = to;
-    this.from.addDoor(this);
-    this.to.addDoor(this);
     doorState = new UnlockedClosed(this);
   }
 
@@ -37,14 +35,14 @@ public class Door {
 
     // Added some specific unauthorized actions
     // since some actions might be performed without authorization
-    if( ( (this.doorState instanceof UnlockedOpen) && action.equals(Actions.CLOSE)    )
-     || ( (this.doorState instanceof UnlockedClosed) && action.equals(Actions.OPEN)   )
-     || ( (this.doorState instanceof OpenPropped) && action.equals(Actions.CLOSE)     )
-     || ( (this.doorState instanceof UnlockedShortly) && action.equals(Actions.CLOSE) )
-    ){
+    if (((this.doorState instanceof UnlockedOpen) && action.equals(Actions.CLOSE))
+        || ((this.doorState instanceof UnlockedClosed) && action.equals(Actions.OPEN))
+        || ((this.doorState instanceof OpenPropped) && action.equals(Actions.CLOSE))
+        || ((this.doorState instanceof UnlockedShortly) && action.equals(Actions.CLOSE))
+    ) {
       request.forceAuthorization();
       doAction(action);
-      System.out.println("action performed with no autorization");
+      System.out.println("action performed with no authorization");
     }
 
     request.setDoorStateName(getStateName());
@@ -55,42 +53,41 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
-        if(doorState instanceof UnlockedClosed){
+        if (doorState instanceof UnlockedClosed) {
           doorState.open();
-        }else{
+        } else {
           System.out.println("Door already open or locked.");
         }
         break;
 
       case Actions.CLOSE:
-        if(doorState instanceof UnlockedOpen || doorState instanceof UnlockedShortly || doorState instanceof OpenPropped){
+        if (doorState instanceof UnlockedOpen || doorState instanceof UnlockedShortly || doorState instanceof OpenPropped) {
           doorState.close();
-        }else{
+        } else {
           System.out.println("Door already closed.");
         }
         break;
 
       case Actions.LOCK:
-        if(doorState instanceof UnlockedClosed){
+        if (doorState instanceof UnlockedClosed) {
           doorState.lock();
-        }else{
+        } else {
           System.out.println("Door already locked or open.");
         }
         break;
 
       case Actions.UNLOCK:
-        if(doorState instanceof LockedClosed){
+        if (doorState instanceof LockedClosed) {
           doorState.unlock();
-        }else{
+        } else {
           System.out.println("Door already unlocked or open.");
         }
         break;
 
       case Actions.UNLOCK_SHORTLY:
-        if(doorState instanceof LockedClosed){
+        if (doorState instanceof LockedClosed) {
           doorState.unlockShortly();
-
-        }else{
+        } else {
           System.out.println("Door already open or unlocked.");
         }
         break;
@@ -116,7 +113,7 @@ public class Door {
   }
 
   //sets the door state
-  public void setState(DoorState ds){
+  public void setState(DoorState ds) {
     this.doorState = ds;
   }
 
@@ -126,10 +123,12 @@ public class Door {
   }
 
   //returns the door "To" area
-  public Space getTo() { return to; }
-  
+  public Space getTo() {
+    return to;
+  }
 
-  public Clock getClock(){
+
+  public Clock getClock() {
     return clock;
   }
 
