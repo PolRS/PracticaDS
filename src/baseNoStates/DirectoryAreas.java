@@ -1,5 +1,8 @@
 package baseNoStates;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -12,7 +15,8 @@ import java.util.Iterator;
 public final class DirectoryAreas {
   private static ArrayList<Door> allDoors;
   private static ArrayList<Area> allAreas;
-
+  private static final Logger log1 = LoggerFactory.getLogger("firstMilestoneClasses");
+  private static final Logger logAC = LoggerFactory.getLogger("allClasses");
 
   //creates all areas and doors
   public static void makeAreas() {
@@ -74,7 +78,10 @@ public final class DirectoryAreas {
         return door;
       }
     }
-    System.out.println("door with id " + id + " not found");
+
+
+    log1.info("door with id " + id + " not found");
+    logAC.info("door with id " + id + " not found");
     return null; // otherwise we get a Java error
   }
 
@@ -91,7 +98,9 @@ public final class DirectoryAreas {
 
   // returns an iterator of all areas
   public static Iterator<Door> getAllDoors() {
-    System.out.println(allDoors);
+    log1.debug(String.valueOf(allDoors));
+    logAC.debug(String.valueOf(allDoors));
+
     return allDoors.iterator();
   }
 }

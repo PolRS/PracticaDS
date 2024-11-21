@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.StringTokenizer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 // Based on
 // https://www.ssaurel.com/blog/create-a-simple-http-web-server-in-java
 // http://www.jcgonzalez.com/java-socket-mini-server-http-example
@@ -23,10 +26,16 @@ public class WebServer {
   private static final DateTimeFormatter formatter =
           DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 
+  //LogLevels
+  private static final Logger log1 = LoggerFactory.getLogger("firstMilestoneClasses"); //First Mileston log
+  private static final Logger logAC = LoggerFactory.getLogger("allClasses"); //All class log
+
   public WebServer() {
     try {
       ServerSocket serverConnect = new ServerSocket(PORT);
-      System.out.println("Server started.\nListening for connections on port : " + PORT + " ...\n");
+      log1.info("Server started.\nListening for connections on port : " + PORT + " ...\n");
+      logAC.info("Server started.\nListening for connections on port : " + PORT + " ...\n");
+
       // we listen until user halts server execution
       while (true) {
         // each client connection will be managed in a dedicated Thread
@@ -34,7 +43,8 @@ public class WebServer {
         // create dedicated thread to manage the client connection
       }
     } catch (IOException e) {
-      System.err.println("Server Connection error : " + e.getMessage());
+      log1.error("Server Connection error : " + e.getMessage());
+      logAC.error("Server Connection error : " + e.getMessage());
     }
   }
 
@@ -64,25 +74,30 @@ public class WebServer {
         String input = in.readLine();
         // we parse the request with a string tokenizer
 
-        System.out.println("sockedthread : " + input);
+        log1.info("sockedthread : " + input);
+        logAC.info("sockedthread : " + input);
 
         StringTokenizer parse = new StringTokenizer(input);
         String method = parse.nextToken().toUpperCase(); // we get the HTTP method of the client
         if (!method.equals("GET")) {
-          System.out.println("501 Not Implemented : " + method + " method.");
+          log1.error("501 Not Implemented : " + method + " method.");
+          logAC.error("501 Not Implemented : " + method + " method.");
         } else {
           // what comes after "localhost:8080"
           resource = parse.nextToken();
-          System.out.println("input " + input);
-          System.out.println("method " + method);
-          System.out.println("resource " + resource);
+          log1.info("input " + input+"\nmethod " + method +"\nresource " + resource);
+          logAC.info("input " + input+"\nmethod " + method +"\nresource " + resource);
+
+
 
           parse = new StringTokenizer(resource, "/[?]=&");
           int i = 0;
           String[] tokens = new String[20]; // more than the actual number of parameters
           while (parse.hasMoreTokens()) {
             tokens[i] = parse.nextToken();
-            System.out.println(i + " " + tokens[i]);
+            log1.info(i + " " + tokens[i]);
+            logAC.info(i + " " + tokens[i]);
+
             i++;
           }
 
@@ -90,12 +105,17 @@ public class WebServer {
           Request request = makeRequest(tokens);
           if (request != null) {
             String typeRequest = tokens[0];
-            System.out.println("created request " + typeRequest + " " + request);
+            log1.info("created request " + typeRequest + " " + request);
+            logAC.info("created request " + typeRequest + " " + request);
             request.process();
-            System.out.println("processed request " + typeRequest + " " + request);
+            log1.info("processed request " + typeRequest + " " + request);
+            logAC.info("created request " + typeRequest + " " + request);
+
             // Make the answer as a JSON string, to be sent to the Javascript client
             String answer = makeJsonAnswer(request);
-            System.out.println("answer\n" + answer);
+            log1.info("answer\n" + answer);
+            logAC.info("answer\n" + answer);
+
             // Here we send the response to the client
             out.println(answer);
             out.flush(); // flush character output stream buffer
@@ -106,17 +126,23 @@ public class WebServer {
         out.close();
         insocked.close(); // we close socket connection
       } catch (Exception e) {
-        System.err.println("Exception : " + e);
+        log1.error("Exception : " + e);
+        logAC.error("Exception : " + e);
       }
     }
 
     private Request makeRequest(String[] tokens) {
       // always return request because it contains the answer for the Javascript client
-      System.out.print("tokens : ");
+      log1.info("tokens : ");
+      logAC.info("tokens : ");
+
       for (String token : tokens) {
-        System.out.print(token + ", ");
+        log1.info(token + ", ");
+        logAC.info(token + ", ");
+
       }
-      System.out.println();
+      log1.info("");
+      logAC.info("");
 
       Request request;
       // assertions below evaluated to false won't stop the webserver, just print an
