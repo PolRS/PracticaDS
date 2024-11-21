@@ -15,6 +15,7 @@ import java.util.Iterator;
 public final class DirectoryAreas {
   private static ArrayList<Door> allDoors;
   private static ArrayList<Area> allAreas;
+  private static Area parentArea;
   private static final Logger log1 = LoggerFactory.getLogger("firstMilestoneClasses");
   private static final Logger logAC = LoggerFactory.getLogger("allClasses");
 
@@ -25,6 +26,8 @@ public final class DirectoryAreas {
     // building
     Area building = new Partition("building", null);
     allAreas.add(building);
+
+    parentArea = building;
 
     // basement
     Partition basement = new Partition("basement", building);
@@ -87,13 +90,16 @@ public final class DirectoryAreas {
 
   //finds an area by its id
   public static Area findAreaById(String id) {
-    for (Area area : allAreas) {
-      if (area.getId().equals(id)) {
-        return area;
-      }
+    FindAreaByIdVisitor findAreaByIdVisitor = new FindAreaByIdVisitor(id);
+    findAreaByIdVisitor.visit(parentArea);
+    Area area = findAreaByIdVisitor.getArea();
+    if (area == null) {
+      assert false : ("area with id " + id + " not found");
+      return null; // otherwise we get a Java error
     }
-    assert false : ("area with id " + id + " not found");
-    return null; // otherwise we get a Java error
+
+    return area;
+
   }
 
   // returns an iterator of all areas

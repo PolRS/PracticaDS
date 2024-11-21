@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class RequestArea implements Request {
@@ -78,7 +79,9 @@ public class RequestArea implements Request {
 
       // Make all the door requests, one for each door in the area, and process them.
       // Look for the doors in the spaces of this area that give access to them.
-      for (Door door : area.getDoorsGivingAccess()) {
+      VisitorDoorsGivingAccess visitorDoorsGivingAccess = new VisitorDoorsGivingAccess();
+      area.accept(visitorDoorsGivingAccess);
+      for (Door door : visitorDoorsGivingAccess.getDoors()) {
 
         System.out.println(door.getId());
 

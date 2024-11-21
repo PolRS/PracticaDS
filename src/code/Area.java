@@ -44,5 +44,7 @@ public abstract class Area {
     this.subAreas.add(a);
   }
 
-  public abstract ArrayList<Door> getDoorsGivingAccess();
+  public void accept(AreaVisitor visitor) {
+    visitor.visit(this);
+  }
 }
