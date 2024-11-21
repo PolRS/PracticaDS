@@ -4,7 +4,6 @@ import code.requests.Request;
 import code.requests.RequestArea;
 import code.requests.RequestReader;
 import code.requests.RequestRefresh;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,7 +13,6 @@ import java.net.Socket;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.StringTokenizer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +25,8 @@ public class WebServer {
           DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 
   //LogLevels
-  private static final Logger log1 = LoggerFactory.getLogger("firstMilestoneClasses"); //First Mileston log
+  private static final Logger log1 = LoggerFactory.getLogger("firstMilestoneClasses");
+  //First Milestone log
   private static final Logger logAC = LoggerFactory.getLogger("allClasses"); //All class log
 
   public WebServer() {
@@ -49,7 +48,7 @@ public class WebServer {
   }
 
 
-  private class SocketThread extends Thread {
+  private static class SocketThread extends Thread {
     // as an inner class, SocketThread sees WebServer attributes
     private final Socket insocked; // client connection via Socket class
 
@@ -85,8 +84,8 @@ public class WebServer {
         } else {
           // what comes after "localhost:8080"
           resource = parse.nextToken();
-          log1.info("input " + input+"\nmethod " + method +"\nresource " + resource);
-          logAC.info("input " + input+"\nmethod " + method +"\nresource " + resource);
+          log1.info("input " + input + "\nmethod " + method + "\nresource " + resource);
+          logAC.info("input " + input + "\nmethod " + method + "\nresource " + resource);
 
 
 

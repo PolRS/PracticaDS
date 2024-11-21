@@ -2,14 +2,14 @@ package code;
 
 public class UnlockedClosed extends DoorState {
   public UnlockedClosed(Door door) {
-      super(door, true);
-      this.name = "unlocked";
+    super(door, true);
+    this.name = "unlocked";
   }
 
   // opens the door
   @Override
   public void open() {
-      this.door.setState(new UnlockedOpen(this.door));
+    this.door.setState(new UnlockedOpen(this.door));
   }
 
   //cannot close a door that is already closed
@@ -21,7 +21,7 @@ public class UnlockedClosed extends DoorState {
   // locks the door
   @Override
   public void lock() {
-      this.door.setState(new LockedClosed(this.door));
+    this.door.setState(new LockedClosed(this.door));
   }
 
   // cannot unlock a door that is already unlocked
