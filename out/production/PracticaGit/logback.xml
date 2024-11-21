@@ -5,19 +5,31 @@
         </encoder>
     </appender>
 
+    <appender name="HTML" class="ch.qos.logback.core.FileAppender">
+        <file>/logs.html</file>
+        <append>true</append>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.html.HTMLLayout"/>
+        </encoder>
+    </appender>
+
     <root level="debug">
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="HTML" />
     </root>
 
     <logger name="firstMilestoneClasses" level="debug">
-        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="HTML" />
     </logger>
 
     <logger name="secondMilestoneClasses" level="debug">
-        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="HTML" />
     </logger>
 
     <logger name="allClasses" level="debug">
-        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="HTML" />
     </logger>
 </configuration>

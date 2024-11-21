@@ -1,11 +1,11 @@
 package code;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * Class responsible for initializing doors, spaces and partitions,
@@ -39,8 +39,8 @@ public final class DirectoryAreas {
     allAreas.add(exterior);
     allAreas.add(stairs);
 
-    Door d1 = new Door("D1", exterior, parking); // exterior, parking
-    Door d2 = new Door("D2", stairs, parking); // stairs, parking
+    final Door d1 = new Door("D1", exterior, parking); // exterior, parking
+    final Door d2 = new Door("D2", stairs, parking); // stairs, parking
 
     // ground floor
     Partition groundFloor = new Partition("ground_floor", building);
@@ -52,10 +52,10 @@ public final class DirectoryAreas {
     allAreas.add(room1);
     allAreas.add(room2);
 
-    Door d3 = new Door("D3", exterior, hall); // exterior, hall
-    Door d4 = new Door("D4", stairs, hall); // stairs, hall
-    Door d5 = new Door("D5", hall, room1); // hall, room1
-    Door d6 = new Door("D6", hall, room2); // hall, room2
+    final Door d3 = new Door("D3", exterior, hall); // exterior, hall
+    final Door d4 = new Door("D4", stairs, hall); // stairs, hall
+    final Door d5 = new Door("D5", hall, room1); // hall, room1
+    final Door d6 = new Door("D6", hall, room2); // hall, room2
 
     // first floor
     Partition firstFloor = new Partition("floor1", building);
@@ -67,9 +67,9 @@ public final class DirectoryAreas {
     allAreas.add(room3);
     allAreas.add(it);
 
-    Door d7 = new Door("D7", stairs, corridor); // stairs, corridor
-    Door d8 = new Door("D8", corridor, room3); // corridor, room3
-    Door d9 = new Door("D9", corridor, it); // corridor, IT
+    final Door d7 = new Door("D7", stairs, corridor); // stairs, corridor
+    final Door d8 = new Door("D8", corridor, room3); // corridor, room3
+    final Door d9 = new Door("D9", corridor, it); // corridor, IT
 
     allDoors = new ArrayList<>(Arrays.asList(d1, d2, d3, d4, d5, d6, d7, d8, d9));
   }

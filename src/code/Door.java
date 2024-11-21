@@ -73,7 +73,9 @@ public class Door {
         break;
 
       case Actions.CLOSE:
-        if (doorState instanceof UnlockedOpen || doorState instanceof UnlockedShortly || doorState instanceof OpenPropped) {
+        if (doorState instanceof UnlockedOpen
+                || doorState instanceof UnlockedShortly
+                || doorState instanceof OpenPropped) {
           doorState.close();
         } else {
           log1.info("Door already closed.");

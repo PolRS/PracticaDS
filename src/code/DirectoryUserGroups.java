@@ -18,6 +18,7 @@ public final class DirectoryUserGroups {
   //LogLevels
   private static final Logger log1 = LoggerFactory.getLogger("firstMilestoneClasses");
   private static final Logger logAC = LoggerFactory.getLogger("allClasses");
+
   public static void makeUserGroups() {
     //FOR ALL GROUPS :
     // - Create List of Areas
@@ -35,13 +36,14 @@ public final class DirectoryUserGroups {
     List<Area> accessBlank = new ArrayList<>();
     LocalDateTime periodStartBlank = LocalDateTime.of(2000, 1, 1, 0, 0);
     LocalDateTime periodEndBlank = LocalDateTime.of(2000, 1, 1, 0, 0);
-    LocalTime timeStartBlank = LocalTime.of(0,0);
-    LocalTime timeEndBlank = LocalTime.of(0,0);
+    LocalTime timeStartBlank = LocalTime.of(0, 0);
+    LocalTime timeEndBlank = LocalTime.of(0, 0);
     List<DayOfWeek> daysBlank = new ArrayList<>();
     // Empty schedule
-    Schedule scheduleBlank = new Schedule(timeStartBlank,timeEndBlank,daysBlank,periodStartBlank,periodEndBlank);
+    Schedule scheduleBlank =
+            new Schedule(timeStartBlank, timeEndBlank, daysBlank, periodStartBlank, periodEndBlank);
     // Empty permission
-    Permission permissionBlank = new Permission(accessBlank, scheduleBlank,false);
+    Permission permissionBlank = new Permission(accessBlank, scheduleBlank, false);
     // New Group
     UserGroup blankUserGroup = new UserGroup("blank", permissionBlank);
     userGroups.add(blankUserGroup);
@@ -59,26 +61,32 @@ public final class DirectoryUserGroups {
     Area floor1 = DirectoryAreas.findAreaById("floor1");
     Area exterior = DirectoryAreas.findAreaById("exterior");
     Area stairs = DirectoryAreas.findAreaById("stairs");
-    List<Area> accessEmployees = new ArrayList<>(Arrays.asList(groundFloor, floor1, exterior, stairs));
+    List<Area> accessEmployees =
+            new ArrayList<>(Arrays.asList(groundFloor, floor1, exterior, stairs));
     // Schedule
     LocalDateTime periodStartEmployees = LocalDateTime.of(2024, 9, 1, 0, 0);
     LocalDateTime periodEndEmployees = LocalDateTime.of(2025, 3, 1, 0, 0);
-    LocalTime timeStartEmployess = LocalTime.of(9,0);
-    LocalTime timeEndEmployess = LocalTime.of(17,0);
+    LocalTime timeStartEmployess = LocalTime.of(9, 0);
+    LocalTime timeEndEmployess = LocalTime.of(17, 0);
     List<DayOfWeek> daysEmployees = new ArrayList<>(Arrays.asList(
         DayOfWeek.MONDAY,
         DayOfWeek.TUESDAY,
         DayOfWeek.WEDNESDAY,
         DayOfWeek.THURSDAY,
         DayOfWeek.FRIDAY));
-    Schedule scheduleEmployees= new Schedule(timeStartEmployess,timeEndEmployess,daysEmployees,periodStartEmployees,periodEndEmployees);
+    Schedule scheduleEmployees = new Schedule(
+            timeStartEmployess,
+            timeEndEmployess,
+            daysEmployees,
+            periodStartEmployees,
+            periodEndEmployees);
     // Permission
-    Permission permissionEmployess = new Permission(accessEmployees, scheduleEmployees,false);
+    Permission permissionEmployess = new Permission(accessEmployees, scheduleEmployees, false);
     // UserGroup
     UserGroup employeesUserGroup = new UserGroup("employees", permissionEmployess);
     userGroups.add(blankUserGroup);
     // Add Users to group
-    users.add(new User("Ernest", "74984",employeesUserGroup));
+    users.add(new User("Ernest", "74984", employeesUserGroup));
     users.add(new User("Eulalia", "43295", employeesUserGroup));
 
     // MANAGERS :
@@ -91,8 +99,8 @@ public final class DirectoryUserGroups {
     // Schedule
     LocalDateTime periodStartManagers = LocalDateTime.of(2024, 9, 1, 0, 0);
     LocalDateTime periodEndManagers = LocalDateTime.of(2025, 3, 1, 0, 0);
-    LocalTime timeStartManagers = LocalTime.of(8,0);
-    LocalTime timeEndManagers = LocalTime.of(20,0);
+    LocalTime timeStartManagers = LocalTime.of(8, 0);
+    LocalTime timeEndManagers = LocalTime.of(20, 0);
     List<DayOfWeek> daysManagers = new ArrayList<>(Arrays.asList(
         DayOfWeek.MONDAY,
         DayOfWeek.TUESDAY,
@@ -101,7 +109,12 @@ public final class DirectoryUserGroups {
         DayOfWeek.FRIDAY,
         DayOfWeek.SATURDAY,
         DayOfWeek.SUNDAY));
-    Schedule scheduleManagers= new Schedule(timeStartManagers, timeEndManagers, daysManagers, periodStartManagers, periodEndManagers);
+    Schedule scheduleManagers = new Schedule(
+            timeStartManagers,
+            timeEndManagers,
+            daysManagers,
+            periodStartManagers,
+            periodEndManagers);
     // Permission
     Permission permissionManagers = new Permission(accessManagers, scheduleManagers, true);
     UserGroup managerGroup = new UserGroup("managers", permissionManagers);
@@ -129,7 +142,8 @@ public final class DirectoryUserGroups {
         DayOfWeek.FRIDAY,
         DayOfWeek.SATURDAY,
         DayOfWeek.SUNDAY));
-    Schedule scheduleAdmin = new Schedule(timeStartAdmin, timeEndAdmin, daysAdmin, periodStartAdmin, periodEndAdmin);
+    Schedule scheduleAdmin =
+            new Schedule(timeStartAdmin, timeEndAdmin, daysAdmin, periodStartAdmin, periodEndAdmin);
     // Permission
     Permission permissionAdmin = new Permission(accessAdmin, scheduleAdmin, true);
     UserGroup adminGroup = new UserGroup("admin", permissionAdmin);

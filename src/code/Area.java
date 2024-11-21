@@ -14,6 +14,7 @@ public abstract class Area {
 
   protected Area parentArea;
   protected List<Area> subAreas;
+
   public Area(String id, Area parentArea) {
     this.id = id;
     this.parentArea = parentArea;

@@ -20,9 +20,13 @@ public abstract class DoorState {
   // all subclasses must implement the following methods
   // even if they do nothing
   public abstract void open();
+
   public abstract void close();
+
   public abstract void lock();
+
   public abstract void unlock();
+
   public abstract void unlockShortly();
 
   // isClosed returns if specidfic state is closed
