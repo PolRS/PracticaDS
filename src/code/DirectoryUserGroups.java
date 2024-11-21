@@ -1,15 +1,11 @@
-package baseNoStates;
+package code;
 
-import jdk.jshell.execution.DirectExecutionControl;
-
-import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 // This class is a directory of all userGroups
 // and users in the system.

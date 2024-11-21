@@ -1,7 +1,7 @@
-package baseNoStates.requests;
+package code.requests;
 
-import baseNoStates.DirectoryAreas;
-import baseNoStates.Door;
+import code.DirectoryAreas;
+import code.Door;
 import java.util.ArrayList;
 import java.util.Iterator;
 

@@ -1,7 +1,6 @@
-package baseNoStates;
+package code;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Class that represents a subdivision of an area.

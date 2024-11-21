@@ -1,9 +1,9 @@
-package baseNoStates;
+package code;
 
-import baseNoStates.requests.Request;
-import baseNoStates.requests.RequestReader;
-import baseNoStates.requests.RequestRefresh;
-import baseNoStates.requests.RequestArea;
+import code.requests.Request;
+import code.requests.RequestReader;
+import code.requests.RequestRefresh;
+import code.requests.RequestArea;
 
 import java.io.BufferedReader;
 import java.io.IOException;

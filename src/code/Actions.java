@@ -1,4 +1,4 @@
-package baseNoStates;
+package code;
 
 public final class Actions {
   // all possible actions for the doors

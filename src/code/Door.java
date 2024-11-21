@@ -1,6 +1,6 @@
-package baseNoStates;
+package code;
 
-import baseNoStates.requests.RequestReader;
+import code.requests.RequestReader;
 import org.json.JSONObject;
 
 // Door class that represents a door in the system

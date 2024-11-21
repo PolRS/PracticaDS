@@ -1,6 +1,4 @@
-package baseNoStates;
-
-import java.util.List;
+package code;
 
 /**
  * Class that represensts a Group of users in the program.

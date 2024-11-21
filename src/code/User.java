@@ -1,4 +1,4 @@
-package baseNoStates;
+package code;
 
 /**
  * Class that represensts a User.

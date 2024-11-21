@@ -1,4 +1,4 @@
-package baseNoStates;
+package code;
 
 public class UnlockedOpen extends DoorState {
   public UnlockedOpen(Door door) {

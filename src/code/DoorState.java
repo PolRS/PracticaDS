@@ -1,4 +1,4 @@
-package baseNoStates;
+package code;
 
 // DoorState is the base class for all the states of the Door
 public abstract class DoorState {
