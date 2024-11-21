@@ -22,5 +22,8 @@ public class Space extends Area {
     return doors;
   }
 
+  public void addDoor(Door d) {
+    this.doors.add(d);
+  }
 
 }

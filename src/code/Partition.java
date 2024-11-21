@@ -7,7 +7,6 @@ import java.util.ArrayList;
  * is part of the Composite pattern.
  */
 public class Partition extends Area {
-  ArrayList<Area> areas = new ArrayList<>();
 
   public Partition(String id, Area parentArea) {
     super(id, parentArea);
@@ -15,9 +14,9 @@ public class Partition extends Area {
 
   public ArrayList<Door> getDoorsGivingAccess() {
     ArrayList<Door> doors = new ArrayList<>();
-    for (Area area : areas) {
+    for (Area area : this.subAreas) {
       if (area instanceof Partition) {
-        area.getDoorsGivingAccess();
+        doors.addAll(area.getDoorsGivingAccess());
       } else {
         doors.addAll(area.getDoorsGivingAccess());
       }
