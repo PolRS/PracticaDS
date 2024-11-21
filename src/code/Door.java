@@ -2,6 +2,8 @@ package code;
 
 import code.requests.RequestReader;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 // Door class that represents a door in the system
 public class Door {
@@ -10,6 +12,9 @@ public class Door {
   private final Space from;
   private final Space to;
   private static final Clock clock = new Clock();
+  //LogLevels
+  private static final Logger log1 = LoggerFactory.getLogger("firstMilestoneClasses");
+  private static final Logger logAC = LoggerFactory.getLogger("allClasses");
 
   // Constructor (all doors are initially unlocked and closed by default)
   public Door(String id, Space from, Space to) {
@@ -30,7 +35,9 @@ public class Door {
     if (request.isAuthorized()) {
       doAction(action);
     } else {
-      System.out.println("not authorized");
+      log1.info("not authorized");
+      logAC.info("not authorized");
+
     }
 
     // Added some specific unauthorized actions
@@ -42,7 +49,8 @@ public class Door {
     ) {
       request.forceAuthorization();
       doAction(action);
-      System.out.println("action performed with no authorization");
+      log1.info("action performed with no authorization");
+      logAC.info("action performed with no authorization");
     }
 
     request.setDoorStateName(getStateName());
@@ -56,7 +64,9 @@ public class Door {
         if (doorState instanceof UnlockedClosed) {
           doorState.open();
         } else {
-          System.out.println("Door already open or locked.");
+          log1.info("Door already open or locked.");
+          logAC.info("Door already open or locked.");
+
         }
         break;
 
@@ -64,7 +74,8 @@ public class Door {
         if (doorState instanceof UnlockedOpen || doorState instanceof UnlockedShortly || doorState instanceof OpenPropped) {
           doorState.close();
         } else {
-          System.out.println("Door already closed.");
+          log1.info("Door already closed.");
+          logAC.info("Door already closed.");
         }
         break;
 
@@ -72,7 +83,8 @@ public class Door {
         if (doorState instanceof UnlockedClosed) {
           doorState.lock();
         } else {
-          System.out.println("Door already locked or open.");
+          log1.info("Door already locked or open.");
+          logAC.info("Door already locked or open.");
         }
         break;
 
@@ -80,7 +92,8 @@ public class Door {
         if (doorState instanceof LockedClosed) {
           doorState.unlock();
         } else {
-          System.out.println("Door already unlocked or open.");
+          log1.info("Door already unlocked or open.");
+          logAC.info("Door already unlocked or open.");
         }
         break;
 
@@ -88,7 +101,9 @@ public class Door {
         if (doorState instanceof LockedClosed) {
           doorState.unlockShortly();
         } else {
-          System.out.println("Door already open or unlocked.");
+          log1.info("Door already open or unlocked.");
+          logAC.info("Door already open or unlocked.");
+
         }
         break;
       default:

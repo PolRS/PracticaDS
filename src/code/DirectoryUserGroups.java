@@ -6,12 +6,18 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 // This class is a directory of all userGroups
 // and users in the system.
 public final class DirectoryUserGroups {
   private static final List<User> users = new ArrayList<>();
   private static final List<UserGroup> userGroups = new ArrayList<>();
+  //LogLevels
+  private static final Logger log1 = LoggerFactory.getLogger("firstMilestoneClasses");
+  private static final Logger logAC = LoggerFactory.getLogger("allClasses");
   public static void makeUserGroups() {
     //FOR ALL GROUPS :
     // - Create List of Areas
@@ -137,7 +143,9 @@ public final class DirectoryUserGroups {
         return user;
       }
     }
-    System.out.println("user with credential " + credential + " not found");
+    log1.warn("user with credential " + credential + " not found");
+    logAC.warn("user with credential " + credential + " not found");
+
     return null; // otherwise we get a Java error
   }
 
