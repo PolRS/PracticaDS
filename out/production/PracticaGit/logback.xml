@@ -1,0 +1,23 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <logger name="firstMilestoneClasses" level="debug">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <logger name="secondMilestoneClasses" level="debug">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <logger name="allClasses" level="debug">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+</configuration>
