@@ -21,4 +21,6 @@ public class Space extends Area {
   public ArrayList<Door> getDoorsGivingAccess() {
     return doors;
   }
+
+
 }

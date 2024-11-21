@@ -11,7 +11,6 @@ public class Partition extends Area {
 
   public Partition(String id, Area parentArea) {
     super(id, parentArea);
-    this.areas = areas;
   }
 
   public ArrayList<Door> getDoorsGivingAccess() {

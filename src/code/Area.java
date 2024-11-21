@@ -1,6 +1,7 @@
 package code;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Abstract class that stores information about areas,
@@ -12,10 +13,15 @@ public abstract class Area {
   protected final String id;
 
   protected Area parentArea;
-
+  protected List<Area> subAreas;
   public Area(String id, Area parentArea) {
     this.id = id;
     this.parentArea = parentArea;
+    this.subAreas = new ArrayList<>();
+
+    if (parentArea != null) {
+      parentArea.addSubArea(this);
+    }
   }
 
   public String getId() {
@@ -32,6 +38,10 @@ public abstract class Area {
     } else {
       return this.belongsInside(a.parentArea);
     }
+  }
+
+  protected void addSubArea(Area a) {
+    this.subAreas.add(a);
   }
 
   public abstract ArrayList<Door> getDoorsGivingAccess();
