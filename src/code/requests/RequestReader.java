@@ -1,7 +1,11 @@
 package code.requests;
 
-import code.*;
-
+import code.Actions;
+import code.Area;
+import code.DirectoryAreas;
+import code.DirectoryUserGroups;
+import code.Door;
+import code.User;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import org.json.JSONArray;
@@ -38,9 +42,10 @@ public class RequestReader implements Request {
     return authorized;
   }
 
-  public void forceAuthorization(){
+  public void forceAuthorization() {
     this.authorized = true;
   }
+
   public void addReason(String reason) {
     reasons.add(reason);
   }
@@ -76,7 +81,7 @@ public class RequestReader implements Request {
 
   // see if the request is authorized and put this into the request, then send it to the door.
   // if authorized, perform the action.
-    public void process() {
+  public void process() {
     User user = DirectoryUserGroups.findUserByCredential(credential);
     assert user != null : "user " + credential + " not found";
     Door door = DirectoryAreas.findDoorById(doorId);
@@ -102,8 +107,8 @@ public class RequestReader implements Request {
       Area from = door.getFrom();
       Area to = door.getTo();
 
-      assert from != null: door.getId()+" has no FROM space";
-      assert to != null: door.getId()+" has no TO space";
+      assert from != null : door.getId() + " has no FROM space";
+      assert to != null : door.getId() + " has no TO space";
 
       LocalDateTime time = now;
 
@@ -113,14 +118,14 @@ public class RequestReader implements Request {
 
       boolean permissionToUnlock = user.getUserGroup().getPermission().canLockAndUnlock();
 
-      if(this.getAction().equals(Actions.LOCK) || this.getAction().equals(Actions.UNLOCK)){
+      if (this.getAction().equals(Actions.LOCK) || this.getAction().equals(Actions.UNLOCK)) {
         authorized = permission1 && permission2 && permissionToUnlock;
-      }else {
+      } else {
         authorized = permission1 && permission2;
       }
 
 
-      }
+    }
   }
 }
 

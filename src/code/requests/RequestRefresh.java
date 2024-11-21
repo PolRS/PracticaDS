@@ -4,7 +4,6 @@ import code.DirectoryAreas;
 import code.Door;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -34,7 +33,7 @@ public class RequestRefresh implements Request {
   // repaint the readers
   public void process() {
     Iterator<Door> it = DirectoryAreas.getAllDoors();
-    while(it.hasNext()){
+    while (it.hasNext()) {
       Door door = it.next();
       jsonsDoors.add(door.toJson());
     }

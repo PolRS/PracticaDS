@@ -1,10 +1,6 @@
 package code;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import java.util.List;
 
 /**
  * Class that represents a specific Space.
