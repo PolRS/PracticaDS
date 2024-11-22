@@ -1,6 +1,12 @@
 package code;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class UnlockedOpen extends DoorState {
+
+
+
   public UnlockedOpen(Door door) {
     super(door, false);
     this.name = "unlocked";
@@ -9,6 +15,8 @@ public class UnlockedOpen extends DoorState {
   //cannot open a door that is already open
   @Override
   public void open() {
+
+
     assert false;
   }
 

@@ -21,26 +21,26 @@
         </encoder>
     </appender>
 
-
+    <!--
     <root level="info">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="HTML" />
         <appender-ref ref="TEXT" />
     </root>
-    <!--
-    <logger name="firstMilestoneClasses" level="debug">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="HTML" />
-        <appender-ref ref="TEXT" />
-    </logger>
     -->
-    <logger name="secondMilestoneClasses" level="debug">
+    <logger name="firstMilestoneClasses" level="debug" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="HTML" />
+        <appender-ref ref="TEXT" />
+    </logger>
+
+    <logger name="secondMilestoneClasses" level="debug" additivity="false">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="HTML" />
         <appender-ref ref="TEXT" />
     </logger>
     <!--
-    <logger name="allClasses" level="debug">
+    <logger name="allClasses" level="debug" additivity="false">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="HTML" />
         <appender-ref ref="TEXT" />

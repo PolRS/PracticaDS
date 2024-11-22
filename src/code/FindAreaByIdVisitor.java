@@ -45,8 +45,8 @@ public class FindAreaByIdVisitor implements AreaVisitor {
   @Override
   public void visit(Area area) {
     if (areaLookingFor == null) {
-      log2.trace("visiting:" + area.getId());
-      logAC.trace("visiting:" + area.getId());
+      log2.info("visiting:" + area.getId());
+      logAC.info("visiting:" + area.getId());
       if (area instanceof Space) {
         visit(((Space) area));
       } else {

@@ -3,11 +3,17 @@ package code;
 
 import java.util.Observable;
 import java.util.Observer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /*
  * Represents the state of the door when it is unlocked and will be locked shortly
  */
 public class UnlockedShortly extends DoorState implements Observer {
+
+  private static final Logger log1 = LoggerFactory.getLogger("firstMilestoneClasses");
+
+  private static final Logger logAC = LoggerFactory.getLogger("allClasses"); //All class log
   private int timeLeftOpen;
   private static final int DEFAULT_TIME_OPEN = 10;
 
@@ -28,6 +34,9 @@ public class UnlockedShortly extends DoorState implements Observer {
   public void update(Observable o, Object arg) {
     tickCounter++;
     if (tickCounter == 10) {
+      log1.warn("Door is propped");
+      logAC.warn("Door is propped");
+
       ((Clock) o).deleteObserver(this);  // Remove this door from the observer list
       this.door.setState(new OpenPropped(this.door));
     }
@@ -69,6 +78,7 @@ public class UnlockedShortly extends DoorState implements Observer {
     if (this.timeLeftOpen > 1) {
       this.timeLeftOpen--;
     } else {
+
       this.door.setState(new OpenPropped(this.door));
     }
   }
