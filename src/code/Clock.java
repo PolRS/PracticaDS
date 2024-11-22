@@ -7,14 +7,12 @@ import java.util.TimerTask;
 // Clock class that makes it possible to 
 // create a clock that ticks every second
 public class Clock extends Observable {
-  private final Timer timer;
-
-  public Clock(Clock c) {
-    timer = c.timer;
-  }
+  private static Timer timer = null;
 
   public Clock() {
-    timer = new Timer();
+    if (timer == null) {
+      timer = new Timer();
+    }
   }
 
   // Starts the clock

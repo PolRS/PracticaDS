@@ -7,6 +7,7 @@ import java.util.List;
 // access to an Area and all
 public class VisitorDoorsGivingAccess implements AreaVisitor {
 
+
   private final List<Door> doors = new ArrayList<>();
 
 

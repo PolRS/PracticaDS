@@ -14,5 +14,5 @@ public class UserGroup {
   //returns the permission of the group
   public Permission getPermission() {
     return permission;
-    }
+  }
 }

@@ -1,9 +1,15 @@
 package code;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class FindAreaByIdVisitor implements AreaVisitor {
 
   private Area areaLookingFor;
   private String id;
+
+  private static final Logger log2 = LoggerFactory.getLogger("secondMilestoneClasses");
+  private static final Logger logAC = LoggerFactory.getLogger("allClasses");
 
   // Visitor that finds and area by ID.
   // It searches for all the subspaces inside
@@ -39,7 +45,8 @@ public class FindAreaByIdVisitor implements AreaVisitor {
   @Override
   public void visit(Area area) {
     if (areaLookingFor == null) {
-
+      log2.trace("visiting:" + area.getId());
+      logAC.trace("visiting:" + area.getId());
       if (area instanceof Space) {
         visit(((Space) area));
       } else {

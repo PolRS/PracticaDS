@@ -181,7 +181,7 @@ abstract class Area {
 + Area(id : String, pA : Area)
 + getId() : String
 + belongInside(a : Area) : boolean
-+ getDoorsGivingAccess() : List<Door>
++ accept(visitor : AreaVisitor)
 }
 
 DirectoryAreas --> "*" Area : "allAreas"
@@ -189,13 +189,30 @@ DirectoryAreas --> "*" Area : "allAreas"
 class Partition extends Area {
 areas : Area[]
 + Partition(id : String, parentArea : Area)
++ accept(visitor : AreaVisitor)
 }
 
 class Space extends Area {
 - doors : Door[]
 + Space(id : String, parentArea : Area)
 + getDoorsGivingAccess() : List<Door>
++ accept(visitor : AreaVisitor)
+}
 
+Interface AreaVisitor{
++ visit(area : Area)
++ visit(partition : Partition)
++ visit(space : Space)
+}
+
+class FindAreaByIdVisitor extends AreaVisitor{
+- area : Area
++ getArea() : Area
+}
+
+class VisitorDoorsGivingAccess extends AreaVisitor{
++ doors : List<Door>
++ getDoors() : List<Door>
 }
 
 class Main {

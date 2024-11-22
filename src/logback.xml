@@ -13,23 +13,37 @@
         </encoder>
     </appender>
 
+    <appender name="TEXT" class="ch.qos.logback.core.FileAppender">
+        <file>logsT.txt</file>
+        <append>true</append>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.html.HTMLLayout"/>
+        </encoder>
+    </appender>
+
+
     <root level="info">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="HTML" />
+        <appender-ref ref="TEXT" />
     </root>
-
+    <!--
     <logger name="firstMilestoneClasses" level="debug">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="HTML" />
+        <appender-ref ref="TEXT" />
     </logger>
-
+    -->
     <logger name="secondMilestoneClasses" level="debug">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="HTML" />
+        <appender-ref ref="TEXT" />
     </logger>
-
+    <!--
     <logger name="allClasses" level="debug">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="HTML" />
+        <appender-ref ref="TEXT" />
     </logger>
+    -->
 </configuration>
