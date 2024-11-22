@@ -221,8 +221,8 @@ class Main {
 
 class Clock extends Observable {
 - timer : Timer
-+ Clock(c : Clock)
-+ Clock()
+- Clock()
++ getClockInstance() : Clock
 + startClock()
 + stopClock()
 - tick()

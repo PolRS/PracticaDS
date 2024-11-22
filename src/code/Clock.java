@@ -8,11 +8,19 @@ import java.util.TimerTask;
 // create a clock that ticks every second
 public class Clock extends Observable {
   private static Timer timer = null;
+  private static Clock clock = null;
 
-  public Clock() {
+  private Clock() {
     if (timer == null) {
       timer = new Timer();
     }
+  }
+
+  public static Clock getClockInstance() {
+    if (clock == null) {
+      clock = new Clock();
+    }
+    return clock;
   }
 
   // Starts the clock

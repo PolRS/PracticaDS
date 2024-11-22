@@ -11,7 +11,7 @@ public class Door {
   private DoorState doorState;
   private final Space from;
   private final Space to;
-  private static final Clock clock = new Clock();
+  private static final Clock clock = Clock.getClockInstance();
   //LogLevels
   private static final Logger log1 = LoggerFactory.getLogger("firstMilestoneClasses");
   private static final Logger logAC = LoggerFactory.getLogger("allClasses");
