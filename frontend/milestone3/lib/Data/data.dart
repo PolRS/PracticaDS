@@ -12,11 +12,26 @@ class Actions {
   // in the screen of actions
 }
 
+class DoorState{
+  static const String openLocked = "openLocked";
+  static const String openUnlocked = "openUnlocked";
+  static const String openPropped = "openPropped";
+  static const String closedLocked = "closedLocked";
+  static const String closedUnlocked = "closedUnlocked";
+}
+
 class User {
   late String name;
   late String credential;
 
   User(this.name, this.credential);
+}
+
+class Door{
+  late String name;
+  late String state;
+
+  Door(this.name, this.state);
 }
 
 class Schedule {
@@ -91,6 +106,7 @@ class Data {
       DateTime.now(), DateTime.now().add(const Duration(days: 365)),
       const TimeOfDay(hour: 8, minute: 0), const TimeOfDay(hour: 19, minute: 0)
   );
+
 
   
   static List<String> defaultAreas = ["ground_floor", "room3", "corridor"];

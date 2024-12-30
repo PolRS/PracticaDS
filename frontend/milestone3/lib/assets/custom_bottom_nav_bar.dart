@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:milestone3/Data/requests.dart';
-import 'package:milestone3/Pages/parent_area.dart';
+import 'package:milestone3/Pages/parent_area_page.dart';
 import 'package:milestone3/assets/MyColors.dart';
 
 class CustomBottomNavBar extends StatefulWidget {

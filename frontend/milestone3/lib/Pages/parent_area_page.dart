@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:milestone3/Data/area_loader.dart';
 import 'package:milestone3/assets/MyColors.dart';
 import 'package:milestone3/assets/custom_bottom_nav_bar.dart';
 import 'package:milestone3/assets/custom_button.dart';
@@ -25,10 +26,13 @@ class _ParentAreaPageState extends State<ParentAreaPage> {
   generateSubAreaButtons(List<String> subAreas){
     List<Widget> buttons = [];
     for (String subArea in subAreas){
-      buttons.add(CustomButton(label: subArea, onPressed: () => print('Ex'),));
-    }
+      AreaLoader areaLoader = AreaLoader();
+      buttons.add(CustomButton(label: subArea, onPressed: () => {
+        areaLoader.loadArea(context, subArea)}));
+      }
     return buttons;
   }
+  
 
 
   @override

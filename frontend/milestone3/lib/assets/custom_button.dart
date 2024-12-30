@@ -30,7 +30,7 @@ class CustomButton extends StatelessWidget {
             foregroundColor: myColors.Grey_Dark,
             padding: padding,
             shape: RoundedRectangleBorder(
-              side: BorderSide(color: myColors.Grey_Dark, width: 2),
+              side: BorderSide(color: myColors.Grey_Dark, width: 4),
               borderRadius: BorderRadius.circular(borderRadius),
             ),
           ),
