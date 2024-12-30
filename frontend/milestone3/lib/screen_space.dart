@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'tree.dart';
-import 'request.dart' as rq;
+import 'Data/tree.dart';
+import 'Data/request.dart' as rq;
 import 'package:milestone3/Data/data.dart';
 import 'user_info.dart';
 
@@ -60,7 +60,7 @@ class _ScreenSpaceState extends State<ScreenSpace> {
         return Container(
             height: MediaQuery.of(context).size.height,
             color: Colors.white,
-            child: Center(
+            child: const Center(
               child: CircularProgressIndicator(),
             ));
       },
@@ -74,13 +74,13 @@ class _ScreenSpaceState extends State<ScreenSpace> {
         mainAxisSize: MainAxisSize.min, // Ensures the Row takes up minimal space
         children: [
           Text('${door.state}, closed=${door.closed}'),
-          SizedBox(width: 8), // Optional spacing between text and button
+          const SizedBox(width: 8), // Optional spacing between text and button
           IconButton(
-            icon: Icon(Icons.lock_open),
+            icon: const Icon(Icons.lock_open),
             onPressed: ()  {
               rq.openRequest("12345", "open", "2024-12-24T11:30", '${door.id}' );
               setState(() {
-                this.futureTree = rq.getTree(widget.id);
+                futureTree = rq.getTree(widget.id);
               });
               // Action for the button
               print('Unlock button pressed for Door ${door.id}');
@@ -88,11 +88,11 @@ class _ScreenSpaceState extends State<ScreenSpace> {
           ),
           // Add more buttons if needed
           IconButton(
-            icon: Icon(Icons.lock),
+            icon: const Icon(Icons.lock),
             onPressed: () {
               rq.openRequest("12345", "close", "2024-12-24T11:30", '${door.id}' ).then;
               setState(() {
-                this.futureTree = rq.getTree(widget.id);
+                futureTree = rq.getTree(widget.id);
               });
               // Action for the button
               print('Lock button pressed for Door ${door.id}');

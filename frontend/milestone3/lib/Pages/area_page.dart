@@ -23,7 +23,7 @@ class AreaPage extends StatefulWidget {
 
 
 class _AreaPageState extends State<AreaPage> {
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
 
   generateSubAreaButtons(List<String> subAreas){
     List<Widget> buttons = [];
@@ -49,11 +49,11 @@ class _AreaPageState extends State<AreaPage> {
         foregroundColor: myColors.Grey_Light,
         actions: [
           IconButton(
-            icon: Icon(Icons.lock),
+            icon: const Icon(Icons.lock),
             onPressed: () {
               // Add functionality here, like opening a drawer
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Menu button pressed')),
+                const SnackBar(content: Text('Menu button pressed')),
               );
             },
           ),

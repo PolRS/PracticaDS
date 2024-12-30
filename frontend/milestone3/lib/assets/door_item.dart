@@ -12,9 +12,9 @@ class DoorItem extends StatefulWidget {
   final Door doorItem;
 
   const DoorItem({
-    Key? key,
+    super.key,
     required this.doorItem,
-  }) : super(key: key);
+  });
 
 
 
@@ -29,7 +29,7 @@ class DoorItem extends StatefulWidget {
       Requests requests = Requests();
       requests.setDoorState(widget.doorItem, command);
 
-      setState(() {;
+      setState(() {
       });
     }
     open(){
@@ -48,10 +48,10 @@ class DoorItem extends StatefulWidget {
     @override
     Widget build(BuildContext context) {
       return ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
         title: Text(
           widget.doorItem.name,
-          style: TextStyle(fontSize: 25),
+          style: const TextStyle(fontSize: 25),
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
@@ -86,7 +86,7 @@ class DoorItem extends StatefulWidget {
     @override
     Widget build(BuildContext context) {
       return IconButton(
-        icon: Icon(Icons.lock_outline),
+        icon: const Icon(Icons.lock_outline),
         color: myColors.Grey_Medium,
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all<Color>(myColors.Red),
@@ -105,7 +105,7 @@ class DoorItem extends StatefulWidget {
     @override
     Widget build(BuildContext context) {
       return IconButton(
-        icon: Icon(Icons.lock_open),
+        icon: const Icon(Icons.lock_open),
         color: myColors.Grey_Medium,
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all<Color>(myColors.Green),
@@ -123,7 +123,7 @@ class DoorItem extends StatefulWidget {
     @override
     Widget build(BuildContext context) {
       return IconButton(
-        icon: Icon(Icons.meeting_room),
+        icon: const Icon(Icons.meeting_room),
         color: myColors.Grey_Medium,
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all<Color>(myColors.Green),
@@ -141,7 +141,7 @@ class DoorItem extends StatefulWidget {
     @override
     Widget build(BuildContext context) {
       return IconButton(
-        icon: Icon(Icons.door_back_door),
+        icon: const Icon(Icons.door_back_door),
         color: myColors.Grey_Medium,
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all<Color>(myColors.Red),

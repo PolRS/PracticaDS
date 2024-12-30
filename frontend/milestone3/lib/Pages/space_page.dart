@@ -24,7 +24,7 @@ class SpacePage extends StatefulWidget {
 
 
 class _SpacePageState extends State<SpacePage> {
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
 
   generateDoors(List<Door> doors){
     List<Widget> doorItems = [];
@@ -48,11 +48,11 @@ class _SpacePageState extends State<SpacePage> {
         foregroundColor: myColors.Grey_Light,
         actions: [
           IconButton(
-            icon: Icon(Icons.lock),
+            icon: const Icon(Icons.lock),
             onPressed: () {
               // Add functionality here, like opening a drawer
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Menu button pressed')),
+                const SnackBar(content: Text('Menu button pressed')),
               );
             },
           ),

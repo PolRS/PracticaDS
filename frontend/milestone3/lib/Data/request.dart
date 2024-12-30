@@ -4,10 +4,10 @@ import 'dart:convert' as convert;
 import 'tree.dart';
 
 Future<Tree> getTree(String areaId) async {
-  const String BASE_URL = "http://localhost:8080";
+  const String baseUrl = "http://localhost:8080";
 
 
-  Uri uri = Uri.parse("${BASE_URL}/get_children?$areaId");
+  Uri uri = Uri.parse("$baseUrl/get_children?$areaId");
   final response = await http.get(uri);
   // response is NOT a Future because of await
   if (response.statusCode == 200) {
@@ -27,10 +27,10 @@ Future<Tree> getTree(String areaId) async {
 }
 
 Future<bool> openRequest (String credential, String action, String time,String doorId) async {
-  const String BASE_URL = "http://localhost:8080";
+  const String baseUrl = "http://localhost:8080";
   //-/reader?credential=12345&action=close&datetime=2024-12-24T11:30&doorId=D3
   Uri uri = Uri.parse(
-      "${BASE_URL}/reader?credential=$credential&action=$action&datetime=$time&doorId=$doorId");
+      "$baseUrl/reader?credential=$credential&action=$action&datetime=$time&doorId=$doorId");
   final response = await http.get(uri);
 
   if (response.statusCode == 200) {

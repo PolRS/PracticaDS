@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'tree.dart';
+import 'Data/tree.dart';
 import 'screen_space.dart';
-import 'request.dart' as rq;
+import 'Data/request.dart' as rq;
 
 class ScreenPartition extends StatefulWidget {
   final String id;
@@ -57,7 +57,7 @@ class _ScreenPartitionState extends State<ScreenPartition> {
         return Container(
             height: MediaQuery.of(context).size.height,
             color: Colors.white,
-            child: Center(
+            child: const Center(
               child: CircularProgressIndicator(),
             ));
       },

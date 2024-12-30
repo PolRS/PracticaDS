@@ -1,7 +1,6 @@
 import 'package:milestone3/Data/requests.dart';
 import 'package:milestone3/Pages/parent_area_page.dart';
 
-import 'Pages/area_page.dart';
 import 'package:flutter/material.dart';
 
 
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // removes the debug banner that hides the home button
-      title: 'ACS',
+      title: title,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey), // deepPurple
         useMaterial3: true,
