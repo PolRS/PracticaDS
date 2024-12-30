@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:milestone3/Data/data.dart';
 import 'package:milestone3/Data/data.dart' as Data;
-import 'package:milestone3/Data/requests.dart';
+import 'package:milestone3/Data/request.dart' as Request;
 import 'package:milestone3/assets/MyColors.dart';
 
 class DoorItem extends StatefulWidget {
@@ -26,8 +26,7 @@ class DoorItem extends StatefulWidget {
   class _DoorItemState extends State<DoorItem> {
 
     setDoorState(String command){
-      Requests requests = Requests();
-      requests.setDoorState(widget.doorItem, command);
+      Request.setDoorState(widget.doorItem, command);
 
       setState(() {
       });

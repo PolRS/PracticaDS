@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class Actions {
   static const String open = "open";
   static const String close = "close";

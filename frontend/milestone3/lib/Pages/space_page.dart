@@ -42,6 +42,12 @@ class _SpacePageState extends State<SpacePage> {
       ),
       appBar: AppBar(
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Navigate to the previous screen
+          },
+        ),
         backgroundColor: myColors.Grey_Dark,
         foregroundColor: myColors.Grey_Light,
         actions: [

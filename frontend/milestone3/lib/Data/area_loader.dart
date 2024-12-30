@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:milestone3/Data/data.dart';
-import 'package:milestone3/Data/requests.dart';
+import 'package:milestone3/Data/request.dart' as Requests;
 import 'package:milestone3/Pages/parent_area_page.dart';
 import 'package:milestone3/Pages/space_page.dart';
 
 class AreaLoader {
 
 loadArea(context, String name){
-  Requests requests = Requests();
-  if(requests.isSpace(name)){
+  if(Requests.isSpace(name)){
     loadSpace(context, name);
   } else {
     loadPartition(context, name);
@@ -18,12 +17,10 @@ loadArea(context, String name){
 loadSpace(context, String space) {
   print("Loading space $space");
 
-  Requests requests = Requests();
-  List<Door> doors = requests.getSpaceDoors(space);
+  List<Door> doors = Requests.getSpaceDoors(space);
 
   Widget newPage = SpacePage(title: space, doors: doors);
 
-  Navigator.of(context).pop();
   Navigator.of(context).push(MaterialPageRoute<void>(
     builder: (context) {
       return newPage;
@@ -34,15 +31,13 @@ loadSpace(context, String space) {
 
   loadPartition(context, String partition) {
 
-    final requests = Requests();
-    List<String> subAreas = requests.getSubAreas(partition);
+    List<String> subAreas = Requests.getSubAreas(partition);
 
     Widget newPage =  ParentAreaPage(
       title: partition,
       subAreas: subAreas,
     );
 
-    Navigator.of(context).pop();
     Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (context) {
         return newPage;

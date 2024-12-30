@@ -44,6 +44,12 @@ class _AreaPageState extends State<AreaPage> {
         currentIndex: _currentIndex,
       ),
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Navigate to the previous screen
+          },
+        ),
         centerTitle: true,
         backgroundColor: myColors.Grey_Dark,
         foregroundColor: myColors.Grey_Light,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:milestone3/Data/requests.dart';
+import 'package:milestone3/Data/request.dart' as Requests;
 import 'package:milestone3/Pages/parent_area_page.dart';
 import 'package:milestone3/assets/MyColors.dart';
 
@@ -22,11 +22,10 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
     Navigator.of(context).pop();
     Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (context) {
-        final requests = Requests();
-        String area = requests.getParentArea();
+        String area = Requests.getParentArea();
         return ParentAreaPage(
           title: area,
-          subAreas: requests.getSubAreas(area),
+          subAreas: Requests.getSubAreas(area),
         );
       },
     ));

@@ -18,10 +18,23 @@ import 'tree.dart';
 */
 
 
+unlockArea(String areaId) {
+  //TODO
+}
+
+lockArea(String areaId) {
+  //TODO
+}
 
 String getParentArea() {
+  //TODO
   return 'Building';
 }
+
+setDoorState(Data.Door door, String command) {
+  //TODO
+}
+
 
 List<String> getSubAreas(String parentArea) {
   if(parentArea=="Floor1") { return ["Room1"]; }
