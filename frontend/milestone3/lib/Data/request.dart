@@ -1,7 +1,44 @@
 import 'package:http/http.dart' as http;
+import 'package:milestone3/Data/data.dart' as Data; 
 import 'dart:convert' as convert;
 
 import 'tree.dart';
+
+/*
+! - Fix getParentArea() to give the correct parent area and not a hardcoded value
+! - make isSpace() check in java with "instanceof" 
+! - get all the doors in the space with getSpaceDoors(String space)
+! - Requests to operate doors (open, close, lock, unlock)
+! - Request to Lock/Unlock a Partition
+
+! - getGroups() to get all the groups
+! - Get all the users in a group
+! - Get all the schedules in a group
+! - Get all the permissions in a group
+*/
+
+
+
+String getParentArea() {
+  return 'Building';
+}
+
+List<String> getSubAreas(String parentArea) {
+  if(parentArea=="Floor1") { return ["Room1"]; }
+  return ["Floor1", "Floor2", "Floor3"];
+}
+
+bool isSpace(String partition) {
+  return partition == "Room1";
+}
+
+List<Data.Door> getSpaceDoors(String space) {
+  return [
+    Data.Door("Door1", Data.DoorState.openLocked),
+    Data.Door("Door2", Data.DoorState.closedLocked),
+    Data.Door("Door3", Data.DoorState.openUnlocked),
+  ];
+}
 
 Future<Tree> getTree(String areaId) async {
   const String baseUrl = "http://localhost:8080";
