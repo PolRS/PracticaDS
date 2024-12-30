@@ -91,6 +91,8 @@ class Data {
       DateTime.now(), DateTime.now().add(const Duration(days: 365)),
       const TimeOfDay(hour: 8, minute: 0), const TimeOfDay(hour: 19, minute: 0)
   );
+
+  
   static List<String> defaultAreas = ["ground_floor", "room3", "corridor"];
   static List<String> defaultActions = ["open", "close"];
   static String defaultName = "new group";

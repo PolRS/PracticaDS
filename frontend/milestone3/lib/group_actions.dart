@@ -1,4 +1,5 @@
-import 'package:milestone3/data.dart' as data;
+import 'package:milestone3/assets/MyColors.dart';
+import 'package:milestone3/Data/data.dart' as data;
 import 'package:flutter/material.dart';
 
 import 'the_drawer.dart';
@@ -31,8 +32,8 @@ class _GroupActions extends State<GroupActions> {
     return Scaffold(
       drawer: TheDrawer(context).drawer,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
+        backgroundColor: myColors.Grey_Dark,
+        foregroundColor: myColors.Grey_Light,
         title: Text("Group ${userGroup.name}"),
       ),
       body: Center(

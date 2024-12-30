@@ -1,7 +1,7 @@
 import 'package:milestone3/group_options.dart';
 import 'package:flutter/material.dart';
 
-import 'data.dart';
+import 'Data/data.dart';
 import 'the_drawer.dart';
 
 class ScreenListGroups extends StatefulWidget {

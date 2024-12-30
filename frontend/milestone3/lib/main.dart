@@ -1,4 +1,7 @@
-import 'screen_blank.dart';
+import 'package:milestone3/Data/requests.dart';
+import 'package:milestone3/Pages/parent_area.dart';
+
+import 'Pages/area_page.dart';
 import 'package:flutter/material.dart';
 
 
@@ -12,19 +15,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    String title = Requests().getParentArea();
+    List<String> subAreas = Requests().getSubAreas(title);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // removes the debug banner that hides the home button
       title: 'ACS',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue), // deepPurple
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey), // deepPurple
         useMaterial3: true,
         textTheme: const TextTheme(
           bodyMedium: TextStyle(fontSize: 20), // size of hello
         ),
-        // see https://docs.flutter.dev/cookbook/design/themes
       ),
-      home: const ScreenBlank(),
+      home: ParentAreaPage(title: title, subAreas: subAreas), // MyHomePage(),
     );
   }
 }

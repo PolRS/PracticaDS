@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 
-import 'data.dart';
+import 'Data/data.dart';
 import 'the_drawer.dart';
 
 class GroupSchedule extends StatefulWidget {

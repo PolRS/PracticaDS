@@ -4,7 +4,7 @@ import 'package:milestone3/group_schedule.dart';
 import 'package:milestone3/list_group.dart';
 import 'package:flutter/material.dart';
 
-import 'data.dart';
+import 'Data/data.dart';
 import 'the_drawer.dart';
 
 class GroupOptions extends StatefulWidget {

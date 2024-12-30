@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'data.dart';
+import 'Data/data.dart';
 import 'the_drawer.dart';
 
 class UserInfo extends StatefulWidget {

@@ -1,10 +1,10 @@
 
 
-import 'package:milestone3/data.dart';
+import 'package:milestone3/Data/data.dart';
 import 'package:milestone3/user_info.dart';
 import 'package:flutter/material.dart';
 
-import 'data.dart' as Data;
+import 'Data/data.dart' as Data;
 import 'the_drawer.dart';
 
 class ListGroup extends StatefulWidget {
