@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Data/tree.dart';
 import 'Data/request.dart' as rq;
-import 'package:milestone3/Data/data.dart';
+import 'package:milestone3/Data/data.dart' as Data;
 import 'user_info.dart';
 
 
@@ -67,35 +67,35 @@ class _ScreenSpaceState extends State<ScreenSpace> {
     );
   }
 
-  Widget _buildRow(Door door, int index) {
+  Widget _buildRow(Data.Door door, int index) {
     return ListTile(
-      title: Text('D ${door.id}'),
+      title: Text('D ${door.name}'),
       trailing: Row(
         mainAxisSize: MainAxisSize.min, // Ensures the Row takes up minimal space
         children: [
-          Text('${door.state}, closed=${door.closed}'),
+          Text('${door.state}}'),
           const SizedBox(width: 8), // Optional spacing between text and button
           IconButton(
             icon: const Icon(Icons.lock_open),
             onPressed: ()  {
-              rq.openRequest("12345", "open", "2024-12-24T11:30", '${door.id}' );
+              rq.openRequest("12345", "open", "2024-12-24T11:30", '${door.name}' );
               setState(() {
                 futureTree = rq.getTree(widget.id);
               });
               // Action for the button
-              print('Unlock button pressed for Door ${door.id}');
+              print('Unlock button pressed for Door ${door.name}');
             },
           ),
           // Add more buttons if needed
           IconButton(
             icon: const Icon(Icons.lock),
             onPressed: () {
-              rq.openRequest("12345", "close", "2024-12-24T11:30", '${door.id}' ).then;
+              rq.openRequest("12345", "close", "2024-12-24T11:30", '${door.name}' ).then;
               setState(() {
                 futureTree = rq.getTree(widget.id);
               });
               // Action for the button
-              print('Lock button pressed for Door ${door.id}');
+              print('Lock button pressed for Door ${door.name}');
             },
           ),
         ],

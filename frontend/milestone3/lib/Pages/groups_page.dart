@@ -4,19 +4,19 @@ import 'package:milestone3/group_schedule.dart';
 import 'package:milestone3/list_group.dart';
 import 'package:flutter/material.dart';
 
-import 'Data/data.dart';
-import 'the_drawer.dart';
+import '../Data/data.dart';
+import '../the_drawer.dart';
 
-class GroupOptions extends StatefulWidget {
+class GroupPage extends StatefulWidget {
   UserGroup userGroup;
 
-  GroupOptions({super.key, required this.userGroup});
+  GroupPage({super.key, required this.userGroup});
 
   @override
-  State<GroupOptions> createState() => _GroupOptions();
+  State<GroupPage> createState() => _GroupPage();
 }
 
-class _GroupOptions extends State<GroupOptions> {
+class _GroupPage extends State<GroupPage> {
   late UserGroup userGroup;
 
   @override

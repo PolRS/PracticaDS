@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:milestone3/Data/request.dart' as Requests;
+import 'package:milestone3/Pages/others.dart';
 import 'package:milestone3/Pages/parent_area_page.dart';
 import 'package:milestone3/assets/MyColors.dart';
 
@@ -19,6 +20,7 @@ class CustomBottomNavBar extends StatefulWidget {
 class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
 
   onTapHome(){
+    Navigator.of(context).popUntil((route) => route.isFirst);
     Navigator.of(context).pop();
     Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (context) {
@@ -31,11 +33,22 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
     ));
   }
 
+    onTapOthers(){
+    Navigator.of(context).popUntil((route) => route.isFirst);
+    Navigator.of(context).pop();
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (context) {
+        return OthersPage();
+      },
+    ));
+  }
+
+
   onTap(int i){
     if (i == 0){
       onTapHome();
     } else {
-      print("nothing to do");
+      onTapOthers();
     }
   }
 
@@ -53,11 +66,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
           label: 'Navigate',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.group),
-          label: 'Groups',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.star),
+          icon: Icon(Icons.error),
           label: 'Others',
         ),
       ],

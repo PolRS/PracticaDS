@@ -44,6 +44,7 @@ class _ParentAreaPageState extends State<ParentAreaPage> {
       ),
       appBar: AppBar(
         centerTitle: true,
+        leading:Container(),
         backgroundColor: myColors.Grey_Dark,
         foregroundColor: myColors.Grey_Light,
         actions: [

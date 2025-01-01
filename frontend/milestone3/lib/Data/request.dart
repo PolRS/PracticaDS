@@ -10,13 +10,18 @@ import 'tree.dart';
 ! - get all the doors in the space with getSpaceDoors(String space)
 ! - Requests to operate doors (open, close, lock, unlock)
 ! - Request to Lock/Unlock a Partition
-
-! - getGroups() to get all the groups
-! - Get all the users in a group
-! - Get all the schedules in a group
-! - Get all the permissions in a group
+! - getProppedDoors() to get all the propped doors
 */
 
+List<String> getProppedDoors() {
+  //TODO
+  return ["Door7"];
+}
+
+getUserGroups(){
+  //TODO
+  return ["Users", "Admins", "Managers"];
+}
 
 unlockArea(String areaId) {
   //TODO

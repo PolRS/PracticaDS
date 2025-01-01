@@ -72,6 +72,8 @@ class DoorItem extends StatefulWidget {
       return [ButtonClosed(func:open), ButtonUnlocked(func:lock)];
     }else if(d.state == DoorState.openUnlocked){
       return [ButtonOpen(func:close), ButtonUnlocked(func:lock)];
+    }else if(d.state == DoorState.openPropped){
+      return [ButtonPropped()];
     }
 
     return [];
@@ -146,6 +148,23 @@ class DoorItem extends StatefulWidget {
           backgroundColor: WidgetStateProperty.all<Color>(myColors.Red),
         ),
         onPressed: func
+      );
+    }
+  }
+
+class ButtonPropped extends StatelessWidget{
+
+  const ButtonPropped({super.key});
+
+    @override
+    Widget build(BuildContext context) {
+      return IconButton(
+        icon: const Icon(Icons.priority_high),
+        color: myColors.Grey_Medium,
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.all<Color>(const Color.fromARGB(255, 255, 229, 97)),
+        ),
+        onPressed: () => {},
       );
     }
   }

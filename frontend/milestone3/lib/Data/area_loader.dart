@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:milestone3/Data/data.dart';
 import 'package:milestone3/Data/request.dart' as Requests;
+import 'package:milestone3/Pages/area_page.dart';
 import 'package:milestone3/Pages/parent_area_page.dart';
 import 'package:milestone3/Pages/space_page.dart';
 
@@ -33,7 +34,7 @@ loadSpace(context, String space) {
 
     List<String> subAreas = Requests.getSubAreas(partition);
 
-    Widget newPage =  ParentAreaPage(
+    Widget newPage =  AreaPage(
       title: partition,
       subAreas: subAreas,
     );

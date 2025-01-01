@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'Data/data.dart';
-import 'screen_list_groups.dart';
 
 class TheDrawer {
   late Drawer drawer;
@@ -24,17 +23,7 @@ class TheDrawer {
             title: const Text('Places'),
             onTap: () {},
           ),
-          ListTile(
-            leading: const Icon(Icons.group),
-            title: const Text('Groups'),
-            onTap: () {
-              Navigator.of(context).pop(); // close drawer
-              Navigator.of(context).pop();
-              Navigator.of(context).push(MaterialPageRoute<void>(
-                builder: (context) => ScreenListGroups(userGroups: Data.userGroups),
-              ));
-              },
-          ),
+
           ListTile(
             leading: const Icon(Icons.favorite),
             title: const Text('Recent'),
