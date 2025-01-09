@@ -3,6 +3,7 @@ import 'package:milestone3/assets/custom_button.dart';
 import 'Data/tree.dart';
 import 'screen_space.dart';
 import 'Data/request.dart' as rq;
+import 'Data/data.dart' as Data;
 
 class ScreenPartition extends StatefulWidget {
   final String id;
@@ -69,19 +70,26 @@ class _ScreenPartitionState extends State<ScreenPartition> {
     assert (area is Partition || area is Space);
     if (area is Partition) {
       return ListTile(
-        title: Text('P ${area.id}'),
+        title: Row(
+          children: [
+            Icon(Icons.account_tree_outlined),
+            Text('Partition' ,style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold ) , ),
+            const SizedBox(width: 8),
+            Text(area.id),
+          ],
+        ),
         onTap: () => _navigateDownPartition(area.id) ,
         trailing: Row(
           mainAxisSize: MainAxisSize.min ,
             children: [
               if( area.validateUnlock() )
-                Icon(Icons.room_preferences)  ,
+                Icon(Icons.lock_open, color: Colors.green,)  ,
               if(area.validateLocked() )
-                Icon(Icons.lock),
+                Icon(Icons.lock , color: Colors.red),
               IconButton(
               icon: const Icon(Icons.lock_open),
               onPressed: () async {
-                bool successArea = await rq.AreaRequest("11343", "unlock", "2024-12-24T11:30", '${area.id}' );
+                await rq.AreaRequest("11343", "unlock", "2024-12-24T11:30", '${area.id}' );
 
                 setState(() {
                   futureTree = rq.getTree(widget.id);
@@ -113,15 +121,22 @@ class _ScreenPartitionState extends State<ScreenPartition> {
       );
     } else {
       return ListTile(
-        title: Text('S ${area.id}'),
+        title: Row(
+          children: [
+            Icon(Icons.door_sliding_sharp),
+            Text('Space' ,style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold ) , ),
+            const SizedBox(width: 8),
+            Text(area.id),
+          ],
+        ),
         onTap: () => _navigateDownSpace(area.id),
         trailing: Row(
           mainAxisSize: MainAxisSize.min ,
           children: [
             if( area.validateUnlock() )
-              Icon(Icons.room_preferences)  ,
+              Icon(Icons.lock_open, color: Colors.green,)  ,
             if(area.validateLocked() )
-              Icon(Icons.lock),
+              Icon(Icons.lock , color: Colors.red),
             IconButton(
               icon: const Icon(Icons.lock_open),
               onPressed: () async {
@@ -139,6 +154,7 @@ class _ScreenPartitionState extends State<ScreenPartition> {
             IconButton(
               icon: const Icon(Icons.lock),
               onPressed: () async {
+                
                 await rq.AreaRequest("11343", "lock", "2024-12-24T11:30", '${area.id}' );
 
                 setState(() {
@@ -172,3 +188,5 @@ class _ScreenPartitionState extends State<ScreenPartition> {
 
 
 }
+
+

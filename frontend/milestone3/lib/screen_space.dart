@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:milestone3/assets/door_item.dart';
 import 'Data/tree.dart' as tree;
 import 'Data/request.dart' as rq;
 import 'package:milestone3/Data/data.dart' as Data;
 import 'user_info.dart';
-
+import 'package:milestone3/assets/MyColors.dart';
 
 
 class ScreenSpace extends StatefulWidget {
@@ -20,6 +21,7 @@ class _ScreenSpaceState extends State<ScreenSpace> {
   void initState() {
     super.initState();
     futureTree = rq.getTree(widget.id);
+
   }
 
   // future with listview
@@ -70,28 +72,43 @@ class _ScreenSpaceState extends State<ScreenSpace> {
   Widget _buildRow(tree.Door door, int index) {
     return ListTile(
       title: Text('${door.id}'),
+
       trailing: Row(
         mainAxisSize: MainAxisSize.min, // Ensures the Row takes up minimal space
         children: [
-          Text('${door.state} , Closed=${door.closed}'),
+          if (door.closed)
+            Text('${door.state} , Closed')
+          else
+            Text('${door.state} , Open')
+          ,
 
           const SizedBox(width: 8), // Optional spacing between text and button
+
           IconButton(
             icon: const Icon(Icons.lock_open),
+            color: myColors.Grey_Medium,
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all<Color>(door.isUnlocked() ? Colors.indigo : Colors.white),
+            ),
             onPressed: () async {
               await rq.openRequest("11343", "unlock", "2024-12-24T11:30", '${door.id}' );
               setState(() {
                 futureTree = rq.getTree(widget.id);
               });
-              // Action for the button
-
             },
           ),
           // Add more buttons if needed
+
+
           IconButton(
-            icon: const Icon(Icons.lock),
+            icon: const Icon(Icons.lock_outline),
+            color: myColors.Grey_Medium,
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all<Color>(door.isLocked() ? Colors.indigo : Colors.white),
+            ),
             onPressed: () async {
               await rq.openRequest("11343", "lock", "2024-12-24T11:30", '${door.id}' );
+
               setState(() {
                 futureTree = rq.getTree(widget.id);
               });
@@ -100,7 +117,11 @@ class _ScreenSpaceState extends State<ScreenSpace> {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.door_back_door_outlined),
+            icon: const Icon(Icons.meeting_room),
+            color: myColors.Grey_Medium,
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all<Color>(door.closed ? Colors.white : Colors.indigo),
+            ),
             onPressed: () async {
               await rq.openRequest("11343", "open", "2024-12-24T11:30", '${door.id}' );
               //_refresh();
@@ -113,6 +134,10 @@ class _ScreenSpaceState extends State<ScreenSpace> {
           ),
           IconButton(
             icon: const Icon(Icons.door_back_door),
+            color: myColors.Grey_Medium,
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all<Color>(door.closed ? Colors.indigo : Colors.white),
+            ),
             onPressed: () async {
               await rq.openRequest("11343", "close", "2024-12-24T11:30", '${door.id}' );
               //_refresh();
@@ -132,3 +157,4 @@ class _ScreenSpaceState extends State<ScreenSpace> {
 
 
 }
+
