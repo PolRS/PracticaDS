@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Data/tree.dart';
+import 'Data/tree.dart' as tree;
 import 'Data/request.dart' as rq;
 import 'package:milestone3/Data/data.dart' as Data;
 import 'user_info.dart';
@@ -15,7 +15,7 @@ class ScreenSpace extends StatefulWidget {
 }
 
 class _ScreenSpaceState extends State<ScreenSpace> {
-  late Future<Tree> futureTree;
+  late Future<tree.Tree> futureTree;
   @override
   void initState() {
     super.initState();
@@ -26,7 +26,7 @@ class _ScreenSpaceState extends State<ScreenSpace> {
   // https://medium.com/nonstopio/flutter-future-builder-with-list-view-builder-d7212314e8c9
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Tree>(
+    return FutureBuilder<tree.Tree>(
       future: futureTree,
       builder: (context, snapshot) {
         // anonymous function
@@ -37,8 +37,8 @@ class _ScreenSpaceState extends State<ScreenSpace> {
               foregroundColor: Theme.of(context).colorScheme.onPrimary,
               title: Text(snapshot.data!.root.id),
               actions: <Widget>[
-                IconButton(icon: const Icon(Icons.home), onPressed: () {}
-                  // TODO go home page = root
+                IconButton(icon: const Icon(Icons.home), onPressed: () {Navigator.popUntil(context, (route) => route.isFirst);}
+
                 ),
                 //TODO other actions
               ],
@@ -67,37 +67,64 @@ class _ScreenSpaceState extends State<ScreenSpace> {
     );
   }
 
-  Widget _buildRow(Data.Door door, int index) {
+  Widget _buildRow(tree.Door door, int index) {
     return ListTile(
-      title: Text('D ${door.name}'),
+      title: Text('${door.id}'),
       trailing: Row(
         mainAxisSize: MainAxisSize.min, // Ensures the Row takes up minimal space
         children: [
-          Text('${door.state}}'),
+          Text('${door.state} , Closed=${door.closed}'),
+
           const SizedBox(width: 8), // Optional spacing between text and button
           IconButton(
             icon: const Icon(Icons.lock_open),
-            onPressed: ()  {
-              rq.openRequest("12345", "open", "2024-12-24T11:30", '${door.name}' );
+            onPressed: () async {
+              await rq.openRequest("11343", "unlock", "2024-12-24T11:30", '${door.id}' );
               setState(() {
                 futureTree = rq.getTree(widget.id);
               });
               // Action for the button
-              print('Unlock button pressed for Door ${door.name}');
+
             },
           ),
           // Add more buttons if needed
           IconButton(
             icon: const Icon(Icons.lock),
-            onPressed: () {
-              rq.openRequest("12345", "close", "2024-12-24T11:30", '${door.name}' ).then;
+            onPressed: () async {
+              await rq.openRequest("11343", "lock", "2024-12-24T11:30", '${door.id}' );
               setState(() {
                 futureTree = rq.getTree(widget.id);
               });
               // Action for the button
-              print('Lock button pressed for Door ${door.name}');
+
             },
           ),
+          IconButton(
+            icon: const Icon(Icons.door_back_door_outlined),
+            onPressed: () async {
+              await rq.openRequest("11343", "open", "2024-12-24T11:30", '${door.id}' );
+              //_refresh();
+              setState(() {
+                futureTree = rq.getTree(widget.id);
+              });
+              // Action for the button
+
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.door_back_door),
+            onPressed: () async {
+              await rq.openRequest("11343", "close", "2024-12-24T11:30", '${door.id}' );
+              //_refresh();
+              setState(() {
+                futureTree = rq.getTree(widget.id);
+
+              });
+              // Action for the button
+
+            },
+          ),
+
         ],
       ),
     );

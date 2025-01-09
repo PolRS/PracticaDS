@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:milestone3/assets/custom_button.dart';
 import 'Data/tree.dart';
 import 'screen_space.dart';
 import 'Data/request.dart' as rq;
@@ -34,8 +35,8 @@ class _ScreenPartitionState extends State<ScreenPartition> {
               foregroundColor: Theme.of(context).colorScheme.onPrimary,
               title: Text(snapshot.data!.root.id),
               actions: <Widget>[
-                IconButton(icon: const Icon(Icons.home), onPressed: () {}//Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenPartition(id: "ROOT") ) ,);},
-                  // TODO go home page = root
+                IconButton(icon: const Icon(Icons.home), onPressed: () {Navigator.popUntil(context, (route) => route.isFirst);}//Navigator.pushAndRemoveUntil( context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false, // Remove all previous routes  );
+
                 ),
                 //TODO other actions
               ],
@@ -69,18 +70,96 @@ class _ScreenPartitionState extends State<ScreenPartition> {
     if (area is Partition) {
       return ListTile(
         title: Text('P ${area.id}'),
-        onTap: () => _navigateDownPartition(area.id),
-        // TODO, navigate down to show children areas
+        onTap: () => _navigateDownPartition(area.id) ,
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min ,
+            children: [
+              if( area.validateUnlock() )
+                Icon(Icons.room_preferences)  ,
+              if(area.validateLocked() )
+                Icon(Icons.lock),
+              IconButton(
+              icon: const Icon(Icons.lock_open),
+              onPressed: () async {
+                bool successArea = await rq.AreaRequest("11343", "unlock", "2024-12-24T11:30", '${area.id}' );
+
+                setState(() {
+                  futureTree = rq.getTree(widget.id);
+                  area.validateLocked();
+                  area.validateUnlock();
+                });
+
+
+              },
+            ),
+              IconButton(
+                icon: const Icon(Icons.lock),
+                onPressed: () async {
+                  await rq.AreaRequest("11343", "lock", "2024-12-24T11:30", '${area.id}' );
+                  setState(()  {
+                    futureTree = rq.getTree(widget.id);
+                    area.validateLocked();
+                    area.validateUnlock();
+                  });
+                  // Action for the button
+
+                },
+              ),
+
+            ],
+          
+        ),
+
       );
     } else {
       return ListTile(
         title: Text('S ${area.id}'),
         onTap: () => _navigateDownSpace(area.id),
-        // TODO, navigate down to show children doors
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min ,
+          children: [
+            if( area.validateUnlock() )
+              Icon(Icons.room_preferences)  ,
+            if(area.validateLocked() )
+              Icon(Icons.lock),
+            IconButton(
+              icon: const Icon(Icons.lock_open),
+              onPressed: () async {
+                await rq.AreaRequest("11343", "unlock", "2024-12-24T11:30", '${area.id}' );
+
+                setState(() {
+                  futureTree = rq.getTree(widget.id);
+                  area.validateLocked();
+                  area.validateUnlock();
+                });
+
+
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.lock),
+              onPressed: () async {
+                await rq.AreaRequest("11343", "lock", "2024-12-24T11:30", '${area.id}' );
+
+                setState(() {
+                  futureTree = rq.getTree(widget.id);
+                  area.validateLocked();
+                  area.validateUnlock();
+                });
+                // Action for the button
+
+              },
+            )],
+        ),
       );
     }
   }
+  void _refresh() async {
+    futureTree = rq.getTree(widget.id);
+    setState(() {});
+  }
   void _navigateDownPartition(String childId) {
+
     Navigator.of(context)
         .push(MaterialPageRoute<void>(builder: (context) => ScreenPartition(id: childId,))
     );
